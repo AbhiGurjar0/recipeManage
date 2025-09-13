@@ -1,0 +1,395 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+        --primary-50: #fff7ed;
+        --primary-100: #ffedd5;
+        --primary-200: #fed7aa;
+        --primary-300: #fdba74;
+        --primary-400: #fb923c;
+        --primary-500: #f97316;
+        --primary-600: #ea580c;
+        --primary-700: #c2410c;
+        --primary-800: #9a3412;
+        --primary-900: #7c2d12;
+        --secondary-50: #f0fdf4;
+        --secondary-100: #dcfce7;
+        --secondary-200: #bbf7d0;
+        --secondary-300: #86efac;
+        --secondary-400: #4ade80;
+        --secondary-500: #22c55e;
+        --secondary-600: #16a34a;
+        --secondary-700: #15803d;
+        --secondary-800: #166534;
+        --secondary-900: #14532d;
+        --neutral-50: #fafaf9;
+        --neutral-100: #f5f5f4;
+        --neutral-200: #e7e5e4;
+        --neutral-300: #d6d3d1;
+        --neutral-400: #a8a29e;
+        --neutral-500: #78716c;
+        --neutral-600: #57534e;
+        --neutral-700: #44403c;
+        --neutral-800: #292524;
+        --neutral-900: #1c1917;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <title>Recipe Management and Sharing Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+</head>
+
+<body class="bg-primary-50" style='font-family: "Work Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary-100 bg-white px-6 md:px-10 py-4 shadow-sm">
+                <div class="flex items-center gap-6">
+                    <a class="flex items-center gap-3 text-neutral-800" href="#">
+                        <span class="material-symbols-outlined text-primary-500 text-3xl">
+                            restaurant_menu
+                        </span>
+                        <h1 class="text-xl font-bold">RecipeRealm</h1>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">Home</a>
+                        <a class="text-primary-500 text-sm font-bold" href="#">Recipes</a>
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">Community</a>
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">My Recipes</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
+                            search
+                        </span>
+                        <input
+                            class="form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 border-neutral-200 bg-neutral-100 h-10 placeholder:text-neutral-400 pl-10 pr-4 text-sm font-normal"
+                            placeholder="Search recipes..." value="" />
+                    </div>
+                    <button
+                        class="flex items-center justify-center rounded-full h-10 w-10 hover:bg-primary-100 text-neutral-600 hover:text-primary-500 transition-colors">
+                        <span class="material-symbols-outlined text-2xl">
+                            notifications
+                        </span>
+                    </button>
+                    <button>
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary-200 hover:border-primary-500 transition-colors"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzLAhH-1c5xx5k4P0eOT7lo3-cuu3FUdBKwPBhiZxEb4gD4uRvLVoc9j1qg2beSuGRbrBirFzOmdXdSUsNTrO3xf3SqUfsDHBY2t7018C03J59hv5fxA2mmt9XDzX-8-W0XVk4a0pWVUkPub8aV2DRYkHJd6SOSKLubWG7fZZreS0LBl2YTeutraCV_GbxSp1vjUtW1Py7uIKooxhBuGhnLFMBamUT50HPJDB99NvrA8hv-JiRI5Xs91WPCjM5zju894jGxQQjYzQ");'>
+                        </div>
+                    </button>
+                </div>
+            </header>
+            <main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight">Explore Delicious
+                            Recipes</h2>
+                        <p class="mt-2 text-lg text-neutral-600 max-w-2xl mx-auto">Discover thousands of
+                            community-driven recipes for any occasion.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+                        <button
+                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
+                            <p class="text-neutral-700 text-sm font-medium">Cuisine</p>
+                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
+                            <p class="text-neutral-700 text-sm font-medium">Difficulty</p>
+                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
+                            <p class="text-neutral-700 text-sm font-medium">Time</p>
+                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
+                            <p class="text-neutral-700 text-sm font-medium">Diet</p>
+                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDKUgcECElL2DORNvMm36-8A7pbgYg6ymXOfGrKgTPDi5AeTQlqII3W_1-iXnOmWYNepfHFXixDTbuFByvENL_i9PWn-564m76Y0OoIAvcwZvQo9avsyur4cJWIKeAko3rJOCLp5XOep8RiQ5IcOL4woqlz4SEQFRpbMpeoNhq3-lkCW88olVQ46gaBIa2g62Gd74jjNAzbkFmh41OOdx1yjLX0hTWLkOUoxKAFFY0s3qX6sZ4ko0d1T4wCczmJlzYbZEjvUEH9JQ");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Spicy Thai Green Curry</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A flavorful and aromatic Thai curry with
+                                    coconut milk.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>30 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnkaBG6TAv-60hfSApR0tRc2Y_UDx_5kYAaDZOutT6vCsPi5QNWrXRkRaIJUAWs7W832Dm3-lZ0xMEPlcK8ktJ1r0Uu94w_44uGZugR7Eje5IQhGm2wQJIrtY46TKR8SPuBym1rTdVduRpP4LXJixcyZ40nnG_7AqCRiNT09NukqyFkzGy-lLB6V1FpvketxxyKfO7MXbQPu_5o283U8b1En5aeuHmNL6ixSKkFJE1hBHkpmEY4bnEBI8n9wvTaYJ4A75N3lQoM");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Mediterranean Quinoa Salad</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">Refreshing and healthy salad with a
+                                    lemon vinaigrette.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5IUsuAkRsHFAKJEsC6YMiNrqiXqfrN2NQgbAiMxHhfhhrfHCXnu_xGoTQbr3fpaBAcweHMjr7KTkrndGkrVvo5clFK84M0C4ZLGgNWV_eBF1fRFMYVlSPfj5NNWe2ZS85OYwOeuMsBbURL_KWZ_hweFs-t_NzP_lWyncUyKFhTAHdyVYgnwqgNjqbdM-I-eyUbmmV5oldOS8Yn8IHeBMy7A5Eu5xUrrPNLV4iEi1t7EZgNaNFG5KsT-eWESFgDAPErailA05WeN8");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Classic Italian Pasta</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">Traditional pasta with a rich tomato
+                                    sauce and fresh basil.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>45 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvanpVajYMFRM3Fz03w5Z5WDewkjaA6MEIFqxCBCD0gxzahdD8BWOZBC0wtnmAGj9CniihN_i15mUK0cEa5igP8mFz7LWroIPUr43ekCcKbdWqvLCF_r8A4jgb16HpCZniBCpgh-OdnCuTGQ1QUXj5RmsAkganuGB83WZXB0B9Ov_BIoS639DrvaJG9OwwP0e2ebbZeKWCUQrncEdKU8wGMUXqmhb6Ic-7cMYFsSLc-pT1SgpXoYxz33CZGAxirYP3lNsY3_hXerM");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Quick Breakfast Smoothie</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A nutritious and easy-to-make smoothie
+                                    for a quick start.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>5 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlgnc6VRn-IZlH-Kuhgyb0o-VhCdgbXeAdr4jcOGbhIfHbCEo-H8FB7q95flC37q3O69eA_D3-dBXTJl7x7l3nejGph-FvUAtnTCLdN90lrDwNWDCaCRAcoh1yaG7GSIyfn07SrK5oGFHsgzuZ08uT64ZT3MdS8r-Z6Lds9V7N445MyffSWGug2CXlpfyYgKYkfpMBe4dyCjSnU5kOpSCWr2SeORsnVp8eUscjcP9j5B9Kjw4GOa3DFSHfNn53wjbnWPKEmiFDGGQ");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Gourmet French Pastries</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">Delicate and buttery pastries with a
+                                    sweet filling.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>1 hr 30 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBM0aRQbHlWy0gIQiluVKDJqfJ8-a3V5r1hZcB-KyCIssXW_ZhmHmh9VdSSZhpnc7HKCkilg6sFhouemP-C04Nn7_66M_XYkPzfJ2lbaZgSoppLtBvyEORvRuPSQxOdTwhFCD9Zfy2z3utDgLxdbvrPGmO9eKYCMEW2FmTO0toY_zRVFa9Msl7kJ52Qt2khp4PlMbHgiWkdc1M-YUhFH924hRYAYj_sKGZMCIWxDxUrtvS59WqvjpZ0GCvDjwyjXQxyMtfCNLXN5WE");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Hearty American Chili</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A rich and savory chili with beans,
+                                    meat, and spices.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>2 hr</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASrwpvT1qxmkNPDs2x8REgAevhKrv-TPGJ-wEy_9Xcp8iMn7RFussmFT4G4GONxm0SBR1UHKxiMaWsmfjRspkPxrB1DUe4Y0mzjNq1QwJAxHZW8ozSVtPsOM2kW1uSl_18xbhSB0d05G65hnKTgVkRLfLRRzSs8q4eyQ3PoUCdE-NHzSWRCGgqHv35p320gYbgdmSA4K2fqhyDXTFEf_eUxOkzXWpcI777bG5jaaX8it7xZ08louZYrI5eIo9Do71UvFjuYVRQAXA");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Exotic Indian Biryani</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A fragrant and flavorful rice dish with
+                                    meat and spices.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>1 hr 15 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByHCGj_ek87B517oGuBKYL00jwf4MnboIGyxrB5qLYCMGETLn_BQkVkWwRxSAMXtpVcLT8C2KtzOzsvWEjG7qZgblaLDiKsocPxYaqQv6a9lJkJ9e1wynav9FMKnLRdYGj4Gf4YmCi6l4fIZQ5tImBQpP2hs6YuKZKBmfHkrmgyC0STFsJu3xB0OgPTtc0EJlbOZ0Kl8SKgRb_alnOvJnBaup6daQTxIAN9WSzopMZyTb04A9Kc7Kz3gw9N1VNkjBcHEc0Vxf1IcI");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Simple Spanish Tapas</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A variety of small, savory dishes
+                                    perfect for sharing.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>25 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9zCHGS5eE4IneLPdpkb8R6fui_rW0VHm75yhdDS_OGFRuXucyohK5uebl-cOrXcGo7C2r8hRuVnQldG8_sg0NwLC_dBJ_7iZsqSZKs-dBLJ530kLTc1R55jOOfcpqG7qcZ4bniv0-2ACaYt1Z2GgrRiNW3zM5QRtX9by0bsl2_pcfnConGOYE0_pim2EGWlQQlqa6xXiG6tGSAocCOm5sJ0qDCCM-_Tymhg5lI4g7vEj_cvy7o2ix_5-bbx6uFJkrqqqW19bNhnk");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Fresh Vietnamese Spring Rolls</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">Light and refreshing rolls with a peanut
+                                    dipping sauce.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>35 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                            <div class="relative">
+                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKMLe9AqApLj7qPJvp6WTDDMC9mLVhCs1229ZpHbbkS6EDQ-vWSHBN1_ONp0IafZGEASh50mZQh5O9OmcFXwPPQJDuGcg76QBSd1eQMGwo28Utd6Jz_kfcG-7dOM8ukHj6wLBqwbUEkLEuheo5Hgry_BlgvTQ1HNMsLgXQ4h5vDQioLzSrGe2CUDHzKRJwmS8cZ8FzYDLT1pij4EL0HFyL6QGDDw-_RO3Xvy9wp7Q0eBwhZ35yZxr-1hAB3-hZz_XbMG5NpJn3o2o");'>
+                                </div>
+                                <div
+                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3
+                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
+                                    Decadent Chocolate Cake</h3>
+                                <p class="text-neutral-500 text-sm mt-1 flex-1">A rich and moist cake with a creamy
+                                    chocolate frosting.</p>
+                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
+                                    <span class="material-symbols-outlined text-sm">timer</span>
+                                    <span>1 hr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center pt-8">
+                        <nav aria-label="Pagination" class="flex items-center gap-2">
+                            <a class="flex size-9 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl">chevron_left</span>
+                            </a>
+                            <a aria-current="page"
+                                class="flex size-9 items-center justify-center rounded-full text-sm font-bold bg-primary-500 text-white"
+                                href="#">1</a>
+                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
+                                href="#">2</a>
+                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
+                                href="#">3</a>
+                            <span class="text-neutral-500">...</span>
+                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
+                                href="#">8</a>
+                            <a class="flex size-9 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl">chevron_right</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>

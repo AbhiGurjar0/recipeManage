@@ -1,0 +1,193 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+        --primary-50: #fff7ed;
+        --primary-100: #ffedd5;
+        --primary-200: #fed7aa;
+        --primary-300: #fdba74;
+        --primary-400: #fb923c;
+        --primary-500: #f97316;
+        --primary-600: #ea580c;
+        --primary-700: #c2410c;
+        --primary-800: #9a3412;
+        --primary-900: #7c2d12;
+        --secondary-50: #f0fdf4;
+        --secondary-100: #dcfce7;
+        --secondary-200: #bbf7d0;
+        --secondary-300: #86efac;
+        --secondary-400: #4ade80;
+        --secondary-500: #22c55e;
+        --secondary-600: #16a34a;
+        --secondary-700: #15803d;
+        --secondary-800: #166534;
+        --secondary-900: #14532d;
+        --neutral-50: #fafaf9;
+        --neutral-100: #f5f5f4;
+        --neutral-200: #e7e5e4;
+        --neutral-300: #d6d3d1;
+        --neutral-400: #a8a29e;
+        --neutral-500: #78716c;
+        --neutral-600: #57534e;
+        --neutral-700: #44403c;
+        --neutral-800: #292524;
+        --neutral-900: #1c1917;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <title>Recipe Management and Sharing Platform</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+</head>
+
+<body class="bg-primary-50" style='font-family: "Work Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary-100 bg-white px-6 md:px-10 py-4 shadow-sm">
+                <div class="flex items-center gap-6">
+                    <a class="flex items-center gap-3 text-neutral-800" href="#">
+                        <span class="material-symbols-outlined text-primary-500 text-3xl">
+                            restaurant_menu
+                        </span>
+                        <h1 class="text-xl font-bold">RecipeRealm</h1>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">Home</a>
+                        <a class="text-primary-500 text-sm font-bold" href="#">Recipes</a>
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">Community</a>
+                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
+                            href="#">My Recipes</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
+                            search
+                        </span>
+                        <input
+                            class="form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 border-neutral-200 bg-neutral-100 h-10 placeholder:text-neutral-400 pl-10 pr-4 text-sm font-normal"
+                            placeholder="Search recipes..." value="" />
+                    </div>
+                    <button
+                        class="flex items-center justify-center rounded-full h-10 w-10 hover:bg-primary-100 text-neutral-600 hover:text-primary-500 transition-colors">
+                        <span class="material-symbols-outlined text-2xl">
+                            notifications
+                        </span>
+                    </button>
+                    <button>
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary-200 hover:border-primary-500 transition-colors"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzLAhH-1c5xx5k4P0eOT7lo3-cuu3FUdBKwPBhiZxEb4gD4uRvLVoc9j1qg2beSuGRbrBirFzOmdXdSUsNTrO3xf3SqUfsDHBY2t7018C03J59hv5fxA2mmt9XDzX-8-W0XVk4a0pWVUkPub8aV2DRYkHJd6SOSKLubWG7fZZreS0LBl2YTeutraCV_GbxSp1vjUtW1Py7uIKooxhBuGhnLFMBamUT50HPJDB99NvrA8hv-JiRI5Xs91WPCjM5zju894jGxQQjYzQ");'>
+                        </div>
+                    </button>
+                </div>
+            </header>
+            <main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight">Explore Delicious
+                            Recipes</h2>
+                        <p class="mt-2 text-lg text-neutral-600 max-w-2xl mx-auto">Discover thousands of
+                            community-driven recipes for any occasion.</p>
+                    </div>
+                    <form id="filterForm">
+                        <input type="text" name="ingredient" placeholder="Ingredient" />
+                        <input type="text" name="category" placeholder="Category" />
+                        <input type="number" name="minPrice" placeholder="Min Price" />
+                        <input type="number" name="maxPrice" placeholder="Max Price" />
+                        <button type="submit">Filter</button>
+                    </form>
+
+                    <div id="recipesContainer"></div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <% recipe.forEach(function(product) { %>
+
+                            <div
+                                class="bg-white shadow-lg rounded-xl overflow-hidden border w-[45vw] sm:w-[30vw] md:w-[17vw] box-border md:h-[45vh]">
+                                <a href="/recipe/<%=product._id%>">
+
+                                    <% if (product.images && product.images.length> 0) { %>
+                                        <img src="data:image/jpeg;base64,<%= product.images[0].toString('base64') %>"
+                                            class="w-full h-40 sm:h-60 rounded-lg object-cover object-center" />
+                                        <% } else { %>
+                                            <p>No images available for this product.</p>
+                                            <% } %>
+                                                <div class="md:p-4 p-2">
+                                                    <h2 class=" capitalize font-bold text-lg text-nowrap">
+                                                        <%=product.title%>
+                                                    </h2>
+                                                    <p
+                                                        class="py-[1px] px-2 text-sm capitalize bg-zinc-100 rounded-xl inline-block">
+                                                        <%=product.category%>
+                                                    </p>
+                                                    <p class="text-sm text-gray-500">By Padmavati Jewels</p>
+                                                    <div class="flex justify-around  flex-wrap items-center mt-3">
+
+                                                        <span class="text-purple-200 text-md line-through">₹
+                                                            <%=product.price%>
+                                                        </span>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                </a>
+
+                            </div>
+                            <% }) %>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+<script>
+    document.getElementById('filterForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const params = new URLSearchParams();
+
+        for (const [key, value] of formData.entries()) {
+            if (value) params.append(key, value);
+        }
+
+        const response = await fetch(`/recipes?${params.toString()}`);
+        const data = await response.json();
+
+        const container = document.getElementById('recipesContainer');
+        container.innerHTML = '';
+
+        if (data.recipes.length === 0) {
+            container.innerHTML = '<p>No recipes found.</p>';
+        } else {
+            data.recipes.forEach(recipe => {
+                const div = document.createElement('div');
+                div.classList.add('recipe-card', 'p-4', 'border', 'rounded', 'mb-4');
+                div.innerHTML = `
+                <h2 class="text-xl font-bold">${recipe.title}</h2>
+                <p>Price: ${recipe.price}</p>
+                <p>Category: ${recipe.category}</p>
+                <p>Ingredients: ${recipe.ingredients}</p>
+            `;
+                container.appendChild(div);
+            });
+        }
+    });
+
+</script>
+
+</html>

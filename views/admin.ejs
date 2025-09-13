@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link as="style"
+        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+        onload="this.rel='stylesheet'" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+        --primary-color: #4f46e5;--primary-hover-color: #4338ca;}
+    </style>
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-gray-50">
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-white group/design-root overflow-x-hidden"
+        style='font-family: Manrope, "Noto Sans", sans-serif;'>
+        <div class="flex min-h-screen">
+            <aside class="w-64 bg-white border-r border-gray-200 flex-shrink-0 lg:block hidden">
+                <div class="p-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5lgpQ3IY3cbN5PJP3QcMPztrMvZxPXbnOPt0Mf19hZhGvrnStsUDENeo5x4lWACQCGiKwk0Rf29zc_NLEW50cRGNwhZJaushAkwe1isBL9ve3A4wgfaEQk2Jo-xf9OmE7TvhxYyIAUMdL6N0G5vsJ7cSGAyILNq-d73IFvuypMwsOJ-EB2Wk33joe_pKMm0DxvieEFOKtqG5lhwkh02-KCuBGIunWdoE5JNuWW7VSRZqtVOCqNZzuZgGoXxh7yRZ8FM8aD7UEc3A");'>
+                        </div>
+                        <h1 class="text-gray-800 text-lg font-bold">Recipe Admin</h1>
+                    </div>
+                </div>
+                <nav class="mt-6 px-4">
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-900 bg-indigo-50 rounded-lg" href="#">
+                        <span class="material-symbols-outlined text-indigo-600">dashboard</span>
+                        <span class="text-sm font-semibold text-indigo-600">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
+                        href="#">
+                        <span class="material-symbols-outlined">menu_book</span>
+                        <span class="text-sm font-medium">Recipes</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
+                        href="#">
+                        <span class="material-symbols-outlined">group</span>
+                        <span class="text-sm font-medium">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
+                        href="#">
+                        <span class="material-symbols-outlined">flag</span>
+                        <span class="text-sm font-medium">Reports</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
+                        href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="text-sm font-medium">Settings</span>
+                    </a>
+                </nav>
+                <div class="absolute bottom-0 w-64 p-4 border-t border-gray-200">
+                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                        href="#">
+                        <span class="material-symbols-outlined">help_outline</span>
+                        <span class="text-sm font-medium">Help and Docs</span>
+                    </a>
+                </div>
+            </aside>
+            <main class="flex-1 bg-gray-50 hidden">
+                <header class="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                    <div class="lg:hidden">
+                        <button class="text-gray-600">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+                    <button
+                        class="flex items-center gap-2 bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover-color)] transition-colors duration-300 transform hover:scale-105">
+                        <span class="material-symbols-outlined">add</span>
+                        <span>New Recipe</span>
+                    </button>
+                </header>
+                <div class="p-6 md:p-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="text-gray-600 text-sm font-medium">Total Users</p>
+                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                            </div>
+                            <p class="text-gray-900 text-3xl font-bold mt-2">1,234</p>
+                            <p class="text-green-500 text-sm font-semibold mt-1">+12% this month</p>
+                        </div>
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="text-gray-600 text-sm font-medium">Active Recipes</p>
+                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                            </div>
+                            <p class="text-gray-900 text-3xl font-bold mt-2">567</p>
+                            <p class="text-green-500 text-sm font-semibold mt-1">+5% this month</p>
+                        </div>
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="text-gray-600 text-sm font-medium">Pending Approvals</p>
+                                <span class="material-symbols-outlined text-red-500">arrow_downward</span>
+                            </div>
+                            <p class="text-gray-900 text-3xl font-bold mt-2">8</p>
+                            <p class="text-red-500 text-sm font-semibold mt-1">-2% this month</p>
+                        </div>
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="text-gray-600 text-sm font-medium">Reports</p>
+                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                            </div>
+                            <p class="text-gray-900 text-3xl font-bold mt-2">2</p>
+                            <p class="text-green-500 text-sm font-semibold mt-1">+10% this month</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+
+            <main class="flex-1 bg-gray-50 hidden">
+                <header class="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <button @click="isSidebarOpen = !isSidebarOpen" class="text-gray-600 lg:hidden">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                        <h1 class="text-2xl font-bold text-gray-800">Recipes</h1>
+                    </div>
+                    <button
+                        class="flex items-center gap-2 bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover-color)] transition-colors duration-300 transform hover:scale-105">
+                        <span class="material-symbols-outlined">add</span>
+                        <span>New Recipe</span>
+                    </button>
+                </header>
+                <div class="p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                            <input
+                                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-64"
+                                placeholder="Search recipes..." type="text" />
+                        </div>
+                        <div class="flex items-center gap-4 mt-4 md:mt-0">
+                            <div class="relative" x-data="{ open: false }">
+                                <button @click="open = !open"
+                                    class="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+                                    <span class="material-symbols-outlined">sort</span>
+                                    <span>Sort by</span>
+                                </button>
+                                <div @click.away="open = false"
+                                    class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-10" x-show="open"
+                                    x-transition="">
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">By
+                                        Newest</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Most
+                                        Reported</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Most
+                                        Popular</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 text-gray-600 rounded-md hover:bg-gray-100">
+                                    <span class="material-symbols-outlined">grid_view</span>
+                                </button>
+                                <button class="p-2 text-gray-600 rounded-md bg-gray-200">
+                                    <span class="material-symbols-outlined">view_list</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3" scope="col">Recipe ID</th>
+                                    <th class="px-6 py-3" scope="col">Title</th>
+                                    <th class="px-6 py-3" scope="col">Created By</th>
+                                    <th class="px-6 py-3" scope="col">Status</th>
+                                    <th class="px-6 py-3 text-center" scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <td class="px-6 py-4 font-medium text-gray-900">#12345</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <img alt="Spaghetti Bolognese" class="w-10 h-10 rounded-md object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQNUqyflvtrcKixxGUItC3ScMPhFuN2VY8hcoj8nzsvfY4RDKpPyc8thmqavgiL4SD0gmyORKp3yUKcguOpmMKzKYwRJS0EUMcnz4BYVhh3oD2ShKrdbi8etb2NixzRFxO8xGKVDHAAOB2AI4xxc1YT9RQR-zutMzD4UAY5oXhr9w83dZVPYBRIbfaOUjnp4_FZ5QZgNSHtvlOpuCKgpXPsGnSZPAWYBQm-h0wyTYkeuY6Yk06nan8L5wxsQtqF6Susgg_OPkYPDQ" />
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold text-gray-800">Spaghetti
+                                                    Bolognese</span>
+                                                <button @click="isModalOpen = true"
+                                                    class="text-xs text-indigo-600 hover:underline text-left">View
+                                                    Details</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">John Doe</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Approved</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <label class="switch">
+                                                <input checked="" type="checkbox" />
+                                                <span class="slider"></span>
+                                            </label>
+                                            <button
+                                                class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <td class="px-6 py-4 font-medium text-gray-900">#67890</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <img alt="Pizza Margherita" class="w-10 h-10 rounded-md object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoOd7pxyQBnYJYjdVz1D7ytpesXGkQ17CIvqhYC2vxOu_MuhEOXEDa91pZ-1XXXyQc6-kikoPF48N-cS_rgXvSHd7Y_aQpdXa3Fr808Gs4VppZEzy3qBgvT4HVVu95By-O2nuyWxGLkaMn9EpALDR0Jb3ZwLV32TpK6tVQYwUWXUB_8D-7pIfOEVshxgLObYpJoklxUXYK09rV8adBFFCOkk-8pDf7m15hnlK86tbBCnbsg1ikfO_RCJZFiHDIwjfCbg5mI1dcWeE" />
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold text-gray-800">Pizza
+                                                    Margherita</span>
+                                                <button @click="isModalOpen = true"
+                                                    class="text-xs text-indigo-600 hover:underline text-left">View
+                                                    Details</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">Jane Smith</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">Pending</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <label class="switch">
+                                                <input type="checkbox" />
+                                                <span class="slider"></span>
+                                            </label>
+                                            <button
+                                                class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <td class="px-6 py-4 font-medium text-gray-900">#11223</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <img alt="Pancakes" class="w-10 h-10 rounded-md object-cover"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0kCKvs826jWHhgO4j282VI2muP6VUp1AEfEwNnyn4kJwC-pTposXVCo6SL1WFA5bTSowBPIWkXv5jcjlsUnuN46M0BZOwtiXF4iiAknIGbx9thIcx0I_yVa2W58NgVxHBvG9CEae_HK-kkW3ja8d2Bc9CZF51dXX39bsIAEDS6Zph-EBfpc67B9OVEry-Y0F0A0O2CaiPwOs8AuZkyxsa_xV6VY7IorHVmQdQ2JY53V44pXX_W6Zl6uRo3z9MgtpgC3GrGa2HZ3Q" />
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold text-gray-800">Fluffy
+                                                    Pancakes</span>
+                                                <button @click="isModalOpen = true"
+                                                    class="text-xs text-indigo-600 hover:underline text-left">View
+                                                    Details</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">Mike Johnson</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Rejected</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <label class="switch">
+                                                <input type="checkbox" />
+                                                <span class="slider"></span>
+                                            </label>
+                                            <button
+                                                class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+            <div id="users" class="content w-[85vw]">
+                <section class="p-6 bg-gray-100">
+                    <h2 class="text-2xl font-bold mb-4">Users Management</h2>
+                    <div class="bg-white shadow rounded-lg p-4">
+                        <table class="w-full text-sm text-left border border-gray-200">
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th class="hidden md:inline-block px-4 py-2">User ID</th>
+                                    <th class="px-4 py-2">Name</th>
+                                    <th class="px-4 py-2">Email</th>
+                                   
+                                    <th class="hidden md:inline-block px-4 py-2">Status</th>
+                                    <th class="px-4 py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(user.length>0){%>
+                                    <%user.slice().reverse().forEach(function(usr){%>
+                                        <tr class="border-b">
+                                            <td class="hidden md:inline-block  px-4 py-2">
+                                                <%=usr._id%>
+                                            </td>
+                                            <td class="px-4 py-2">
+                                                <%=usr.fullname%>
+                                            </td>
+                                            <td class="px-4 py-2">
+                                                <%=usr.email%>
+                                            </td>
+                                            
+                                            <td class="hidden md:inline-block px-4 py-2 text-green-500 font-semibold">
+                                                Active</td>
+                                            <td class="px-4 py-2">
+                                                <a href="/admin/userDetails/<%= usr._id %>"
+                                                    class="text-blue-500 hover:text-blue-700">View</a>
+
+
+
+                                            </td>
+                                        </tr>
+                                        <%})%>
+                                            <%} else{ %>
+                                                <h1>No users. </h1>
+                                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" style="display: none;"
+            x-show="isModalOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-end="opacity-0"
+            x-transition:leave-start="opacity-100">
+            <div @click.away="isModalOpen = false"
+                class="bg-white rounded-xl shadow-xl w-full max-w-lg mx-4 md:mx-0 transform transition-all"
+                x-show="isModalOpen" x-transition:enter="ease-out duration-300"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-2xl font-bold text-gray-800">Spaghetti Bolognese</h2>
+                        <button @click="isModalOpen = false" class="text-gray-400 hover:text-gray-600">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <img alt="Spaghetti Bolognese" class="w-full h-64 object-cover rounded-lg mt-4"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhnsxoWhIvPTIC-p3Sy3AU6eMv1jtqNSmq72Sml2XxbpKvEXm_hhbr_tTEciqkexOnR4Zo0VYS78i5Q-5uvlZvJGJEVwXWtPZREL1qdJbVEm1RNjMBjk5XBfAOKcSs37wGX397oKrMphqf_f_ATAl6eg8vh263zsBEH8hT7NoAc7deVfJhJbcFTpodr2lnFq2dYxPbSQsk0e6AcV057fV7PbVjl27wRypNv8pIk3gZ3P1iSXNKSkbUVVLLNnIAnu_yGZSb0pqti2E" />
+                    <p class="text-gray-600 mt-4">A classic Italian dish with a rich and savory meat sauce.
+                        Perfect for a family dinner.</p>
+                    <div class="mt-4">
+                        <h3 class="font-semibold text-gray-800">Ingredients:</h3>
+                        <ul class="list-disc list-inside text-gray-600 mt-2">
+                            <li>Spaghetti</li>
+                            <li>Ground beef</li>
+                            <li>Onion, celery, carrots</li>
+                            <li>Tomato sauce</li>
+                            <li>Red wine</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="font-semibold text-gray-800">Instructions:</h3>
+                        <p class="text-gray-600 mt-2">Sauté vegetables, brown the meat, add liquids and
+                            simmer for at least 1 hour. Cook spaghetti and serve with the sauce.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-xl">
+                    <button @click="isModalOpen = false"
+                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-200">Close</button>
+                    <button
+                        class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center gap-2">
+                        <span class="material-symbols-outlined">delete</span>
+                        Remove Recipe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script defer="" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+</body>
+
+</html>
