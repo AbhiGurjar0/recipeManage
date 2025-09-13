@@ -3,19 +3,19 @@
 A full-stack web application where users can create, share, and explore recipes. The platform includes authentication, social features, admin controls, and powerful recipe browsing/search functionalities.
 
 🚀 Key Features
-🔐 User Authentication and Profiles
+<details> <summary>🔐 User Authentication and Profiles</summary>
 
 User Registration & Login: Secure sign-up and login system.
 
 Profile Management: Manage personal information and view contributed & favorite recipes.
 
-📖 Recipe Creation and Management
+</details> <details> <summary>📖 Recipe Creation and Management</summary>
 
 Recipe Submission: Add recipes with ingredients, instructions, cooking time, and servings.
 
 Edit/Delete Recipes: Full control over your own submissions.
 
-🔎 Recipe Browsing and Search
+</details> <details> <summary>🔎 Recipe Browsing and Search</summary>
 
 Browse Recipes: Explore all recipes on the platform.
 
@@ -23,32 +23,34 @@ Advanced Search: Search by keywords, ingredients, or categories.
 
 Filters: Filter by dietary preference (vegetarian, vegan, gluten-free), difficulty, or prep time.
 
-⭐ Favorites and Collections
+</details> <details> <summary>⭐ Favorites and Collections</summary>
 
 Save Favorites: Bookmark recipes for later.
 
 Custom Collections: Organize favorites into groups (e.g., Desserts, Weeknight Dinners).
 
-📝 Ratings and Reviews
+</details> <details> <summary>📝 Ratings and Reviews</summary>
 
 Rate Recipes: Give star ratings after trying a recipe.
 
 Leave Reviews: Share feedback, comments, or cooking tips.
 
-👥 Social Features
+</details> <details> <summary>👥 Social Features</summary>
 
 Follow Users: Stay updated with others’ recipes & favorites.
 
 Activity Feed: See new recipes, ratings, and reviews from followed users.
 
-🛠️ Admin Dashboard
+</details> <details> <summary>🛠️ Admin Dashboard</summary>
 
 User Management: Approve, ban, or manage accounts.
 
 Recipe Management: Remove inappropriate or flagged content.
 
+</details>
 ⚙️ Technical Requirements
-Backend
+
+<details> <summary>🖥️ Backend</summary>
 
 Framework: Node.js with Express
 
@@ -60,12 +62,14 @@ Search: Full-text search implementation
 
 Storage: Cloud storage for images (AWS S3)
 
-Frontend
+</details> <details> <summary>💻 Frontend</summary>
 
 React.js (preferred) or Vanilla HTML/CSS/JavaScript
 
-Additional Tools
+</details> <details> <summary>🛠️ Additional Tools</summary>
 
 Version Control: Git + GitHub
 
 Deployment: AWS
+
+</details>
