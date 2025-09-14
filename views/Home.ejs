@@ -31,46 +31,10 @@
 
 <body class="bg-[var(--background-color)]" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
     <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
-        <header class="sticky top-0 z-10 w-full bg-white/80 backdrop-blur-sm">
-            <div
-                class="container mx-auto flex items-center justify-between whitespace-nowrap px-4 sm:px-6 lg:px-8 py-4">
-                <div class="flex items-center gap-8">
-                    <a class="flex items-center gap-3 text-[var(--text-primary)]" href="#">
-                        <span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">
-                            skillet
-                        </span>
-                        <h1 class="text-2xl font-bold tracking-tight">Culinary Canvas</h1>
-                    </a>
-                    <nav class="hidden md:flex items-center gap-6">
-                        <a class="text-base font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors"
-                            href="#">Home</a>
-                        <a class="text-base font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors"
-                            href="#">Explore</a>
-                        <a class="text-base font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors"
-                            href="/recipe/create">Create</a>
-                        <a class="text-base font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors"
-                            href="#">My Recipes</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="flex md:hidden items-center justify-center rounded-full p-2 text-[var(--text-primary)] hover:bg-[var(--secondary-color)] transition-colors">
-                        <span class="material-symbols-outlined">
-                            menu
-                        </span>
-                    </button>
-                    <button
-                        class="hidden md:flex items-center justify-center rounded-full p-2.5 text-[var(--text-primary)] hover:bg-[var(--secondary-color)] transition-colors">
-                        <span class="material-symbols-outlined text-2xl">
-                            notifications
-                        </span>
-                    </button>
-                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUeYYB9OF26iQRBWPBuoEzJsw4KcVCr-4BKearLi1fLU4WisiT27COpa1GssivwgjhQelWt9fSEI3JeUkI0cozVv0Bp-fnz0Zty3pKALDd8Q4oNKOS8HId0mc1BMVBFtX4ajUgoRcDEV3KGLy4YNYPc71wUmeqc0vx9B2k85YXJ15PRDQSZQzchQSFGlP0nMSXf9Wyi9HvUMXdUYQM1hZeKlL3qhEvI5KXIJEBGNNFwpF7gn2Kn0LSgwrsLr5ClxP-yZwiY7dpvlE");'>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <div class="w-full h-[10vh]">
+            <%- include('partials/navbar') %>
+        </div>
+
         <main class="flex-1">
             <section class="relative">
                 <div class="absolute inset-0 bg-cover bg-center"
@@ -86,7 +50,7 @@
                         Join our community of food lovers and explore a world of culinary delights. Find inspiration,
                         share your creations, and connect with fellow cooks.
                     </p>
-                    <form class="max-w-2xl mx-auto" method="get" action="/user/search">
+                    <form onsubmit="handleSearch(event)" class="max-w-2xl mx-auto" >
                         <div class="relative">
                             <span
                                 class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-neutral-500">search</span>

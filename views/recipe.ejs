@@ -49,48 +49,10 @@
 <body class="bg-primary-50" style='font-family: "Work Sans", sans-serif;'>
     <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
-            <header
-                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary-100 bg-white px-6 md:px-10 py-4 shadow-sm">
-                <div class="flex items-center gap-6">
-                    <a class="flex items-center gap-3 text-neutral-800" href="#">
-                        <span class="material-symbols-outlined text-primary-500 text-3xl">
-                            restaurant_menu
-                        </span>
-                        <h1 class="text-xl font-bold">RecipeRealm</h1>
-                    </a>
-                    <nav class="hidden md:flex items-center gap-6">
-                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
-                            href="#">Home</a>
-                        <a class="text-primary-500 text-sm font-bold" href="#">Recipes</a>
-                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
-                            href="#">Community</a>
-                        <a class="text-neutral-600 hover:text-primary-500 text-sm font-medium transition-colors"
-                            href="#">My Recipes</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="hidden sm:flex relative">
-                        <span
-                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
-                            search
-                        </span>
-                        <input
-                            class="form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 border-neutral-200 bg-neutral-100 h-10 placeholder:text-neutral-400 pl-10 pr-4 text-sm font-normal"
-                            placeholder="Search recipes..." value="" />
-                    </div>
-                    <button
-                        class="flex items-center justify-center rounded-full h-10 w-10 hover:bg-primary-100 text-neutral-600 hover:text-primary-500 transition-colors">
-                        <span class="material-symbols-outlined text-2xl">
-                            notifications
-                        </span>
-                    </button>
-                    <button>
-                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary-200 hover:border-primary-500 transition-colors"
-                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzLAhH-1c5xx5k4P0eOT7lo3-cuu3FUdBKwPBhiZxEb4gD4uRvLVoc9j1qg2beSuGRbrBirFzOmdXdSUsNTrO3xf3SqUfsDHBY2t7018C03J59hv5fxA2mmt9XDzX-8-W0XVk4a0pWVUkPub8aV2DRYkHJd6SOSKLubWG7fZZreS0LBl2YTeutraCV_GbxSp1vjUtW1Py7uIKooxhBuGhnLFMBamUT50HPJDB99NvrA8hv-JiRI5Xs91WPCjM5zju894jGxQQjYzQ");'>
-                        </div>
-                    </button>
-                </div>
-            </header>
+            <div class="w-full h-[10vh]">
+                <%- include('partials/navbar') %>
+            </div>
+          
             <main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-8">
@@ -99,28 +61,19 @@
                         <p class="mt-2 text-lg text-neutral-600 max-w-2xl mx-auto">Discover thousands of
                             community-driven recipes for any occasion.</p>
                     </div>
-                    <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
-                        <button
-                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
-                            <p class="text-neutral-700 text-sm font-medium">Cuisine</p>
-                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
-                        </button>
-                        <button
-                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
-                            <p class="text-neutral-700 text-sm font-medium">Difficulty</p>
-                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
-                        </button>
-                        <button
-                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
-                            <p class="text-neutral-700 text-sm font-medium">Time</p>
-                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
-                        </button>
-                        <button
-                            class="flex h-10 items-center justify-center gap-x-2 rounded-full border border-neutral-200 bg-white px-4 hover:bg-primary-50 transition-colors">
-                            <p class="text-neutral-700 text-sm font-medium">Diet</p>
-                            <span class="material-symbols-outlined text-neutral-500 text-xl">expand_more</span>
-                        </button>
-                    </div>
+                      <form class="max-w-2xl mx-auto" method="get" action="/user/search">
+                <div class="relative">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-neutral-500">search</span>
+                    <input
+                        class="form-input w-full rounded-full bg-white/90 text-lg py-4 pl-14 pr-32 text-[var(--text-primary)] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent"
+                        placeholder="Search recipes..." type="search" name="q" />
+                    <button
+                        class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base font-bold hover:bg-orange-600 transition-colors">
+                        Search
+                    </button>
+                </div>
+            </form>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                         <div
                             class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">

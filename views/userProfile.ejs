@@ -30,18 +30,14 @@
                 <nav class="space-y-4">
                     <button class="flex items-center px-4 py-2 w-[80%] text-white hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'myProfile')">🏠 My Profile</button>
-                    <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'allAddress')">📍 All Addresses</button>
+
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'editProfile')">🖊️ Edit Profile</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'AllRecipe')">📦 My recipes</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'myOrders')">📦Favorite</button>
-                    <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'myOrders')">📦 My Orders</button>
-                    <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'myTransactions')">💳 My Transactions</button>
+
                     <a href="/users/logout" class="text-center">
                         <button
                             class="mt-4 flex text-center justify-center items-center px-4 py-2 w-[80%] bg-red-500 rounded-lg">
@@ -88,51 +84,11 @@
 
                         <!-- <p><strong>Date of Birth:</strong> Not Provided</p> -->
                     </div>
+                    <h1 onclick="addVideo()" class="cursor-pointer mt-6 text-lg font-semibold text-green-600 hover:text-green-800 transition-colors duration-200 bg-green-100 px-4 py-2 rounded-lg inline-block shadow-sm">
+                        Add Recipe Video +
+                    </h1>
                 </div>
-                <div id="allAddress" class="content hidden">
-                    <% if(addresses.length>0){%>
-                        <a href="/updateAddress"> 🖌️ Edit Address </a>
-                        <div class="border border-gray-300 p-6 rounded-md shadow-md">
-                            <h2 class="text-lg font-bold mb-4">Address Information</h2>
-                            <div class="bg-gray-100 p-4 rounded-md">
-                                <p><strong>Full Name :-</strong>
-                                    <%=addresses[0].fullName%>
-                                </p>
-                                <p><strong>Phone Number :-</strong>
-                                    <%=addresses[0].phoneNumber%>
-                                </p>
-                                <p><strong>Address :-</strong>
-                                    <%=addresses[0].fullAddress%>
-                                </p>
 
-                                <div class="flex flex-col md:flex-row justify-between mt-4">
-                                    <p><strong>City :-</strong>
-                                        <%=addresses[0].city%>
-                                    </p>
-                                    <p><strong>State :-</strong>
-                                        <%=addresses[0].state%>
-                                    </p>
-                                    <p><strong>Country :-</strong>
-                                        <%=addresses[0].country%>
-                                    </p>
-                                    <p><strong>Pin Code :-</strong>
-                                        <%=addresses[0].zipCode%>
-                                    </p>
-                                </div>
-                                <div class="mt-4">
-                                    <p><strong>Address Type :-</strong>
-                                        <%=addresses[0].addressType%>
-                                    </p>
-                                    <p><strong>Default Address :-</strong>
-                                        <%=addresses[0].isDefault%>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <%}else{%>
-                            <a href="/addAddress" class="hover:text-blue-500">+ Add address 🏠</a>
-                            <% }%>
-                </div>
                 <div id="editProfile" class="content hidden">
 
                     <h1 class="text-2xl font-bold mb-4">Personal Information</h1>
@@ -151,128 +107,7 @@
                     <!-- </div> -->
 
                 </div>
-                <div id="myOrders" class="content hidden">
-                    <section class="p-0 md:p-6 bg-gray-100">
-                        <h2 class="text-2xl font-bold mb-4">My Orders</h2>
-                        <div class="bg-white shadow rounded-lg p-4 space-y-4">
-                            <!-- Orders List -->
-                            <ul class="divide-y divide-gray-300">
-                                <!-- Sample Order Item -->
 
-                                <% orders.slice().reverse().forEach(function(order){ %>
-                                    <% if(order.productId) { foundProduct=products.find(product=> product._id.toString()
-                                        ===
-                                        order.productId.toString());
-
-                                        if(foundProduct && foundProduct.name && foundProduct.price) {
-                                        %>
-                                        <a href="/order/orderDetails/<%=order.productId%>">
-                                            <li class="py-4 shadow-lg my-2">
-                                                <div class="flex  justify-between items-center  ">
-                                                    <div class="flex gap-5 items-center justify-center">
-                                                        <div>
-                                                            <% if (foundProduct.images && foundProduct.images.length> 0)
-                                                                {
-                                                                %>
-                                                                <img src="data:image/jpeg;base64,<%= foundProduct.images[0].toString('base64') %>"
-                                                                    class="w-[5vh] md:h-[5vw] md:w-[5vw] object-center object-cover" />
-                                                                <% } else { %>
-                                                                    <p>No images available for this product.</p>
-                                                                    <% } %>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium  truncate ">ProductName :
-                                                                <span class="font-semibold text-lg text-black">
-                                                                    <% if(order.productId) { let
-                                                                        foundProduct=products.find(product=>
-                                                                        product._id.toString()
-                                                                        === order.productId.toString());
-
-                                                                        if(foundProduct) {
-                                                                        %> <%= foundProduct.name %>
-                                                                            <% } else { %>
-                                                                                <span class="text-red-500">name not
-                                                                                    available</span>
-                                                                                <% } } else { %>
-                                                                                    <span class="text-red-500">Product
-                                                                                        ID
-                                                                                        missing</span>
-                                                                                    <% } %>
-                                                                </span>
-                                                            </p>
-
-                                                            <!-- <p class="font-medium">Order ID:
-                                                                <%= order._id %>
-                                                            </p> -->
-                                                            <p class="text-sm text-gray-500">Date:
-                                                                <%= new Date(order.createdAt).toLocaleDateString() %>
-                                                            </p>
-                                                            <p class="text-sm">Price: ₹
-                                                                <% if(order.productId) { let
-                                                                    foundProduct=products.find(product=>
-                                                                    product._id.toString() ===
-                                                                    order.productId.toString());
-
-                                                                    if(foundProduct && foundProduct.price) {
-                                                                    %>
-                                                                    <%= foundProduct.price - foundProduct.discount%>
-                                                                        <% } else { %>
-                                                                            <span class="text-red-500">Price not
-                                                                                available</span>
-                                                                            <% } } else { %>
-                                                                                <span class="text-red-500">Product ID
-                                                                                    missing</span>
-                                                                                <% } %>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <span class="text-sm px-2 py-1 bg-green-100  rounded">
-                                                            <% if(order.productId) { let
-                                                                foundProduct=products.find(product=>
-                                                                product._id.toString()
-                                                                ===
-                                                                order.productId.toString());
-
-                                                                if(foundProduct) {
-                                                                if(order.status==="Pending"){
-                                                                %>
-                                                                <span class="text-blue-500">
-                                                                    <%=order.status %>
-                                                                </span>
-                                                                <% }else if(order.status==="Delivered" ){%>
-                                                                    <span class="text-green-500">
-                                                                        <%=order.status %>
-                                                                    </span>
-
-                                                                    <%} else{%>
-                                                                        <span class="text-red-500">
-                                                                            <%=order.status %>
-                                                                        </span>
-
-
-                                                                        <% }} else { %>
-
-                                                                            <span
-                                                                                class=" rounded text-red-500 text-md px-2 py-1">Deletd</span>
-                                                                            <% }%>
-                                                                                <%}%>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </a>
-                                        <% }%>
-                                            <% } else { %>
-                                                <span class="text-red-500">Product ID missing</span>
-                                                <% } %>
-                                                    <% }) %>
-
-
-                            </ul>
-                        </div>
-                    </section>
-                </div>
                 <div id="AllRecipe" class="content hidden grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <% recipe.forEach(function(product) { %>
 
@@ -322,45 +157,43 @@
 
 
 
-                <div id="myTransactions" class="content hidden">
-                    <section class="p-6 bg-white rounded-lg shadow-md">
-                        <h2 class="text-xl font-semibold">My Transactions</h2>
-                        <ul class="mt-4">
-                            <% transactions.slice().reverse().forEach(function(transaction) { %>
-                                <li class="py-4 border-b">
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <p class="font-medium">Amount: ₹
-                                                <%= transaction.amount %>
-                                            </p>
-                                            <p class="text-sm text-gray-500">Method:
-                                                <%= transaction.paymentMethod %>
-                                            </p>
-                                            <p class="text-sm">Date:
-                                                <%= new Date(transaction.createdAt).toLocaleDateString() %>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <% if (transaction.status==="Completed" ) { %>
-                                                <span
-                                                    class="text-sm px-2 py-1 bg-green-100 text-green-600 rounded">Completed</span>
-                                                <% } else { %>
-                                                    <span
-                                                        class="text-sm px-2 py-1 bg-red-100 text-red-600 rounded">Failed</span>
-                                                    <% } %>
-                                        </div>
-                                    </div>
-                                </li>
-                                <% }) %>
-                        </ul>
-
-                    </section>
-
-
-                </div>
             </main>
         </div>
     </div>
+    <form id="addRecipeForm"
+        class="hidden absolute top-[15vw] left-[30vw] bg-white shadow-lg rounded-lg p-6 w-96 space-y-4 border" action="/recipe/addVideo"
+        method="POST" enctype="multipart/form-data">
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Add New Recipe</h2>
+            <p class="cursor-pointer text-gray-600 hover:text-red-500 text-xl font-bold bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-200 shadow-sm" onclick="closeForm()">✕</p>
+        </div>
+
+        <!-- Title -->
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Recipe Title</label>
+            <input type="text" name="title" id="title" required
+                class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+        </div>
+
+
+        <!-- Video Upload -->
+        <div>
+            <label for="video" class="block text-sm font-medium text-gray-700 mb-1">Upload Recipe Video</label>
+            <input type="file" name="video" id="video" accept="video/*" class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4
+             file:rounded-full file:border-0
+             file:text-sm file:font-semibold
+             file:bg-green-100 file:text-green-700
+             hover:file:bg-green-200">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" onclick="closeForm()"
+            class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1">
+            Submit Recipe
+        </button>
+    </form>
+
+
     <script>
         let activeButton = null; // Currently active button ko track karega
 
@@ -418,6 +251,17 @@
                 window.location.href = `/recipe/edit-product/${Id}`;
             }
         }
+        function addVideo() {
+            const form = document.getElementById('addRecipeForm');
+            form.classList.remove('hidden');
+            form.scrollIntoView({ behavior: 'smooth' });
+
+        }
+        function closeForm() {
+            const form = document.getElementById('addRecipeForm');
+            form.classList.add('hidden');
+        }
+
 
 
     </script>

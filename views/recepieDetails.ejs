@@ -41,7 +41,7 @@
             <div class="flex items-center space-x-2">
                 <div class="flex text-yellow-400 text-lg">
                     <% for (let i=0; i < 5; i++) { %>
-                        <% if (i < product.averageRating) { %>
+                        <% if (i < product.avgRating) { %>
                             ★
                             <% } else { %>
                                 ☆
@@ -60,25 +60,27 @@
 
             <!-- Buttons Section -->
             <div class="flex flex-col gap-3 pt-4">
-                <!-- Add to cart -->
-                <a href="/add-to-cart/<%=product._id%>">
-                    <button
-                        class="w-full uppercase text-white text-lg bg-red-500 py-2 px-3 rounded-lg hover:bg-red-600 transition">
-                        🛒 Add to cart
-                    </button>
-                </a>
+
 
                 <!-- Favorite Button -->
-                <button id="fav" onclick="addToFavorite(this,product._id)"
-                    class="w-full flex items-center justify-center gap-2 bg-pink-100 text-pink-600 py-2 px-3 rounded-lg hover:bg-pink-200 transition">
-                    ❤️ Add to Favorites
-                </button>
+                <% if(isFavorite){%>
+                    <button id="fav" onclick="addToFavorite(this,'<%=product._id%>')"
+                        class="w-full flex items-center justify-center gap-2 bg-yellow-100 text-yellow-600 py-2 px-3 rounded-lg hover:bg-yellow-200 transition">
+                        ❤️ Remove From Favorites
+                    </button>
+                    <% } else { %>
 
-                <!-- Add Review -->
-                <button onclick="openReviewModal()"
-                    class="w-full flex items-center justify-center gap-2 bg-green-100 text-green-600 py-2 px-3 rounded-lg hover:bg-green-200 transition">
-                    ✍️ Add Review
-                </button>
+                        <button id="fav" onclick="addToFavorite(this,'<%=product._id%>')"
+                            class="w-full flex items-center justify-center gap-2 bg-pink-100 text-pink-600 py-2 px-3 rounded-lg hover:bg-pink-200 transition">
+                            ❤️ Add to Favorites
+                        </button>
+                        <% } %>
+
+                            <!-- Add Review -->
+                            <button onclick="openReviewModal()"
+                                class="w-full flex items-center justify-center gap-2 bg-green-100 text-green-600 py-2 px-3 rounded-lg hover:bg-green-200 transition">
+                                ✍️ Add Review
+                            </button>
             </div>
         </div>
     </div>
@@ -162,19 +164,27 @@
             });
         });
 
+
         async function addToFavorite(element, Id) {
             let res = await fetch('/user/addFav', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ Id })
             })
+            console.log(element)
             res = await res.json();
             if (res.success) {
-                element.innerHtml = "";
-                element.innerHtml = `
-              
-                ❤️ Remove From Favorites
-            `
+                console.log(res.message);
+                element.innerHTML = "";
+                element.innerHTML = `
+                     ❤️ Remove From Favorites
+                `
+            }
+            else {
+                element.innerHTML = "";
+                element.innerHTML = `
+                  ❤️ Add to Favorites
+                `
             }
 
 

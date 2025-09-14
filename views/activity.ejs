@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link as="style"
+        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+        onload="this.rel='stylesheet'" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+        --primary-color: #5b13ec;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+
+<body class="bg-stone-50">
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-white group/design-root overflow-x-hidden"
+        style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="w-full h-[10vh]">
+                <%- include('partials/navbar') %>
+            </div>
+            <div class="px-10 flex flex-1 justify-center py-8">
+                <main class="flex flex-col gap-8 w-full max-w-xl">
+                    <%recipe.forEach((res)=>{%>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmEsevYZJ24kFTebvbqSrjQObffpCDsAkt2YQc817OEXXXA2RDtWWSLvUXqMo9_WvKvnD_5D6fEamcr4hN0hrg37-GP_OrfbvZk87IXBb67EWjdz5WW8Z8FP2tPezQkbHplUgf0-1_3DVouVVdd5knDJzLSVNayjc4dZKlDSH5qsApRN4D_NI0R64yhc_WplKmUjtfIt3HCb7NxBTKZ2p5U_wg5mIMxDXOPOWQ83BWivwJtQlYowp38P3LGMPfsdIv-OJeKabCBbg");'>
+                                    </div>
+                                    <div>
+                                        <p class="text-stone-900 font-semibold">
+                                            <%=res.userId.name%>
+                                        </p>
+                                        <p class="text-stone-500 text-sm">
+                                            <%=res.title%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <button
+                                    class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary-color text-white text-sm font-bold">
+                                    <span>Follow</span>
+                                </button>
+                            </div>
+                            <div class="container mt-3 relative group w-[460px]">
+
+                                <div class="w-full h-[60vh] object-cover object-top relative" aria-label="Play">
+                                    <video class="w-full h-full object-cover">
+                                        <source src="data:video/mp4;base64,<%= res.video?.toString('base64') %>"
+                                            type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <i class="fa-solid fa-play absolute top-2 right-2 text-white z-10"></i>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <%})%>
+                </main>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
