@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
-const  generateToken  = require('../utils/genrateToken')
+const generateToken = require('../utils/genrateToken')
 
 
 
@@ -16,7 +16,7 @@ exports.registerUser = async (req, res) => {
 
         email = email.toLowerCase();
 
-        let user = await User.findOne( { email } );
+        let user = await User.findOne({ email });
         if (user) {
             return res.status(400).json({ message: 'User already exists' });
         }
@@ -24,7 +24,7 @@ exports.registerUser = async (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 10);
 
         let newUser = await User.create({
-            name:userName,
+            name: userName,
             email,
             password: hashedPassword
         });
@@ -46,7 +46,7 @@ exports.loginUser = async (req, res) => {
         }
 
         email = email.toLowerCase();
-        let user = await User.findOne({ email } );
+        let user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
@@ -69,5 +69,6 @@ exports.loginUser = async (req, res) => {
 
 exports.logoutUser = async (req, res) => {
     res.clearCookie('token');
-    res.status(200).json({ message: 'Logout successful' });
+    // res.status(200).json({ message: 'Logout successful' });
+    res.redirect('/login')
 };

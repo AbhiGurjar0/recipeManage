@@ -34,30 +34,40 @@
             <div class="px-10 flex flex-1 justify-center py-8">
                 <main class="flex flex-col gap-8 w-full max-w-xl">
                     <%recipe.forEach((res)=>{%>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <div
+                                class=" w-[460px] flex items-center justify-between  p-3 bg-white/80 dark:bg-slate-800 rounded-t-xl shadow-sm hover:shadow-lg transition-shadow duration-200">
                                 <div class="flex items-center gap-4">
-                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    <div class="w-12 h-12 rounded-full bg-center bg-cover ring-2 ring-white/60 shadow-sm"
                                         style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmEsevYZJ24kFTebvbqSrjQObffpCDsAkt2YQc817OEXXXA2RDtWWSLvUXqMo9_WvKvnD_5D6fEamcr4hN0hrg37-GP_OrfbvZk87IXBb67EWjdz5WW8Z8FP2tPezQkbHplUgf0-1_3DVouVVdd5knDJzLSVNayjc4dZKlDSH5qsApRN4D_NI0R64yhc_WplKmUjtfIt3HCb7NxBTKZ2p5U_wg5mIMxDXOPOWQ83BWivwJtQlYowp38P3LGMPfsdIv-OJeKabCBbg");'>
                                     </div>
-                                    <div>
-                                        <p class="text-stone-900 font-semibold">
-                                            <%=res.userId.name%>
+
+                                    <div class="min-w-0">
+                                        <p class="text-stone-200 font-semibold truncate">
+                                            <%= res.userId.name %>
                                         </p>
-                                        <p class="text-stone-500 text-sm">
-                                            <%=res.title%>
+                                        <p class="text-stone-500 text-sm truncate">
+                                            <%= res.title %>
                                         </p>
                                     </div>
                                 </div>
-                                <button
-                                    class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary-color text-white text-sm font-bold">
-                                    <span>Follow</span>
-                                </button>
-                            </div>
-                            <div class="container mt-3 relative group w-[460px]">
 
-                                <div class="w-full h-[60vh] object-cover object-top relative" aria-label="Play">
-                                    <video class="w-full h-full object-cover">
+                                <div class="flex items-center gap-3">
+                                    
+                                    <button type="button"
+                                        class="px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
+                                        style="background: var(--primary-color); color: white;"
+                                        onclick="Follow(this,'<%=res.userId._id%>')">
+                                        Follow
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="container relative group w-[460px] rounded-b-xl">
+
+                                <div onclick="Control(this)"
+                                    class="w-full h-[60vh] object-cover object-top relative rounded-xl"
+                                    aria-label="Play">
+                                    <video class="w-full h-full object-cover rounded-b-xl ">
                                         <source src="data:video/mp4;base64,<%= res.video?.toString('base64') %>"
                                             type="video/mp4">
                                         Your browser does not support the video tag.
@@ -75,5 +85,60 @@
     </div>
 
 </body>
+<script>
+    function Control(element) {
+        let video = element.children[0];
+        if (element.getAttribute('aria-label') == 'Play') {
+            video.play();
+            element.setAttribute('aria-label', 'Pause');
+
+        }
+        else {
+            video.pause();
+            element.setAttribute('aria-label', 'Play');
+
+        }
+
+    }
+
+
+    //follow user
+
+    async function Follow(btn, userId) {
+        console.log("this ")
+        let following = false;
+
+        let res = await fetch('/user/addFollower', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId }),
+
+        })
+        res = await res.json();
+        if (res.success) {
+            following = true;
+        }
+
+        if (following) {
+            btn.setAttribute('data-following', 'false');
+            btn.setAttribute('aria-pressed', 'false');
+            btn.style.background = 'white';
+
+            btn.style.color = '#374151';
+            btn.style.border = '1px solid rgba(0,0,0,0.06)';
+            btn.innerText = 'Follow';
+        }
+        else {
+            btn.setAttribute('data-following', 'true');
+            btn.setAttribute('aria-pressed', 'true');
+            btn.style.background = 'var(--primary-color)';
+            btn.style.color = 'white';
+            btn.style.border = 'none';
+            btn.innerText = 'Following';
+        }
+    }
+</script>
 
 </html>

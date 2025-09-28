@@ -21,7 +21,19 @@ const userSchema = new mongoose.Schema({
     favorite: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Recipe",
-    }]
+    }],
+    followers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Follow',
+        }
+    ],
+    following: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Follow',
+        }
+    ],
 })
 
 

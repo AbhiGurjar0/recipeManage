@@ -1,16 +1,18 @@
 const express = require('express');
-const { loginUser, registerUser } = require('../controllers/authController');
+const { loginUser, registerUser, logoutUser } = require('../controllers/authController');
 const isLoggedIn = require('../middlewares/isLoggedIn')
 const Recipe = require('../models/recipe')
 const router = express.Router();
 const recipe = require('./recipe')
 const User = require('../models/User');
 const admin = require('./admin');
-const feed = require('../models/feed')
+const feed = require('../models/feed');
+const followerModel = require('../models/follow');
 
 
 router.post('/login', loginUser);
 router.post('/register', registerUser);
+router.get('/logout', logoutUser)
 
 router.use('/recipe', recipe);
 router.use('/admin', admin)
@@ -20,16 +22,21 @@ router.get('/', (req, res) => {
 router.get('/activity', isLoggedIn, async (req, res) => {
     let videos = await feed.find().populate('userId', 'name').sort({ createdAt: -1 }).limit(20);
     // let username = await User.findById(req.user.Id.id).name;
-    res.render('activity', { recipe:videos });
+    let loggedInUser = await User.findById(req.user.Id.id).populate('following');
+    // console.log(loggedInUser)
+    let followings = loggedInUser.following;
+    console.log(followings)
+    res.render('activity', { recipe: videos, loggedInUser, followings });
 });
 router.get('/profile', isLoggedIn, async (req, res) => {
-    const user = await User.findById(req.user.Id.id).populate('Recepies');
+    const user = await User.findById(req.user.Id.id).populate('Recepies').populate('favorite');
     const recipe = user.Recepies;
+    const favorite = user.favorite;
 
     if (!user) {
         return res.status(404).send("User not found");
     }
-    res.render('userProfile', { user, orders: [], transactions: [], addresses: [], recipe });
+    res.render('userProfile', { user, orders: [], transactions: [], addresses: [], recipe, Favorite: favorite });
 })
 
 router.post('/edit/:id', isLoggedIn, async (req, res) => {
@@ -147,6 +154,64 @@ router.post('/user/addFav', isLoggedIn, async (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 })
+
+//follow user
+
+
+router.post("/user/addFollower", isLoggedIn, async (req, res) => {
+    try {
+        let { userId } = req.body;
+        // console.log(userId)
+        let loggedInUser = req.user.Id.id;
+        if (String(loggedInUser) === String(userId)) {
+            return res.status(400).json({ message: "You can't follow yourself." });
+        }
+
+        // Check if already following
+        const existingFollow = await followerModel.findOne({
+            follower: loggedInUser,
+            following: userId,
+        });
+
+        if (existingFollow) {
+            // Unfollow logic
+            await followerModel.deleteOne({
+                follower: loggedInUser,
+                following: userId,
+            });
+
+            await User.findByIdAndUpdate(loggedInUser, {
+                $pull: { following: userId },
+            });
+
+            await User.findByIdAndUpdate(userId, {
+                $pull: { followers: loggedInUser },
+            });
+
+            return res.json({ success: false, message: "Unfollowed successfully" });
+        } else {
+            // Follow logic
+            await followerModel.create({
+                follower: loggedInUser,
+                following: userId,
+                createdAt: Date.now(),
+            });
+            await User.findByIdAndUpdate(loggedInUser, {
+                $addToSet: { following: userId },
+            });
+
+            await User.findByIdAndUpdate(userId, {
+                $addToSet: { followers: loggedInUser },
+            });
+
+            return res.json({ success: true, message: "Followed successfully" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 
 
 

@@ -8,8 +8,9 @@ const recipe = require('../models/recipe');
 const Video = require('../models/feed');
 const mongoose = require('mongoose');
 
-router.get('/', (req, res) => {
-    res.render('recipe')
+router.get('/', isLoggedIn, async (req, res) => {
+    let recipes = await Recipe.find();
+    res.render('recipe', { recipes })
 })
 
 router.get('/create', (req, res) => {
@@ -141,7 +142,7 @@ router.post("/addVideo", upload.single("video"), isLoggedIn, async (req, res) =>
 
 
         const recipeVideo = new Video({
-            userId: req.user.Id.id, 
+            userId: req.user.Id.id,
             title,
             video: req.file.buffer
         });

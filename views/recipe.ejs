@@ -52,7 +52,7 @@
             <div class="w-full h-[10vh]">
                 <%- include('partials/navbar') %>
             </div>
-          
+
             <main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-8">
@@ -61,261 +61,76 @@
                         <p class="mt-2 text-lg text-neutral-600 max-w-2xl mx-auto">Discover thousands of
                             community-driven recipes for any occasion.</p>
                     </div>
-                      <form class="max-w-2xl mx-auto" method="get" action="/user/search">
-                <div class="relative">
-                    <span
-                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-neutral-500">search</span>
-                    <input
-                        class="form-input w-full rounded-full bg-white/90 text-lg py-4 pl-14 pr-32 text-[var(--text-primary)] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent"
-                        placeholder="Search recipes..." type="search" name="q" />
-                    <button
-                        class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base font-bold hover:bg-orange-600 transition-colors">
-                        Search
-                    </button>
-                </div>
-            </form>
+                    <form class="max-w-2xl mx-auto" method="get" action="/user/search">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-neutral-500">search</span>
+                            <input
+                                class="form-input w-full rounded-full bg-white/90 text-lg py-4 pl-14 pr-32 text-[var(--text-primary)] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent"
+                                placeholder="Search recipes..." type="search" name="q" />
+                            <button
+                                class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base font-bold hover:bg-orange-600 transition-colors">
+                                Search
+                            </button>
+                        </div>
+                    </form>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDKUgcECElL2DORNvMm36-8A7pbgYg6ymXOfGrKgTPDi5AeTQlqII3W_1-iXnOmWYNepfHFXixDTbuFByvENL_i9PWn-564m76Y0OoIAvcwZvQo9avsyur4cJWIKeAko3rJOCLp5XOep8RiQ5IcOL4woqlz4SEQFRpbMpeoNhq3-lkCW88olVQ46gaBIa2g62Gd74jjNAzbkFmh41OOdx1yjLX0hTWLkOUoxKAFFY0s3qX6sZ4ko0d1T4wCczmJlzYbZEjvUEH9JQ");'>
+                        <% recipes.forEach((rec)=>{ %>
+                            <a href="/recipe/details/<%=rec._id%>" class="group block">
+                                <div class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden 
+                  hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300">
+
+                                    <!-- Image with overlay -->
+                                    <div class="relative">
+                                        <img src="data:image/jpeg;base64,<%= rec.images[0]?.toString('base64') %>"
+                                            class="w-full h-44 sm:h-60 object-cover object-center transition-transform duration-300 group-hover:scale-100" />
+
+                                        <!-- Gradient overlay -->
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent">
+                                        </div>
+
+                                        <!-- Rating badge -->
+                                        <div class="absolute top-3 right-3 flex items-center gap-1 
+                      bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1.5 
+                      text-xs font-semibold text-neutral-700 shadow-sm">
+                                            <span class="material-symbols-outlined text-sm text-amber-500">star</span>
+                                            <span>
+                                                <%= rec.rating %>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card content -->
+                                    <div class="p-4 flex flex-col flex-1">
+                                        <h3 class="text-neutral-900 text-lg font-bold leading-snug 
+                     group-hover:text-primary-600 transition-colors line-clamp-1">
+                                            <%= rec.title %>
+                                        </h3>
+
+                                        <p class="text-neutral-600 text-sm mt-2 flex-1 line-clamp-2">
+                                            <%= rec.description %>
+                                        </p>
+
+                                        <!-- Price + meta -->
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-1.5 text-sm font-medium text-primary-600">
+                                                <span class="material-symbols-outlined text-base">sell</span>
+                                                <span>$<%= rec.price %></span>
+                                            </div>
+
+                                            <!-- Example tag -->
+                                            <span
+                                                class="px-2 py-0.5 text-xs rounded-full bg-primary-50 text-primary-700 font-medium">
+                                                Popular
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.8</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Spicy Thai Green Curry</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A flavorful and aromatic Thai curry with
-                                    coconut milk.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>30 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnkaBG6TAv-60hfSApR0tRc2Y_UDx_5kYAaDZOutT6vCsPi5QNWrXRkRaIJUAWs7W832Dm3-lZ0xMEPlcK8ktJ1r0Uu94w_44uGZugR7Eje5IQhGm2wQJIrtY46TKR8SPuBym1rTdVduRpP4LXJixcyZ40nnG_7AqCRiNT09NukqyFkzGy-lLB6V1FpvketxxyKfO7MXbQPu_5o283U8b1En5aeuHmNL6ixSKkFJE1hBHkpmEY4bnEBI8n9wvTaYJ4A75N3lQoM");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.5</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Mediterranean Quinoa Salad</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">Refreshing and healthy salad with a
-                                    lemon vinaigrette.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>15 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5IUsuAkRsHFAKJEsC6YMiNrqiXqfrN2NQgbAiMxHhfhhrfHCXnu_xGoTQbr3fpaBAcweHMjr7KTkrndGkrVvo5clFK84M0C4ZLGgNWV_eBF1fRFMYVlSPfj5NNWe2ZS85OYwOeuMsBbURL_KWZ_hweFs-t_NzP_lWyncUyKFhTAHdyVYgnwqgNjqbdM-I-eyUbmmV5oldOS8Yn8IHeBMy7A5Eu5xUrrPNLV4iEi1t7EZgNaNFG5KsT-eWESFgDAPErailA05WeN8");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.9</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Classic Italian Pasta</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">Traditional pasta with a rich tomato
-                                    sauce and fresh basil.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>45 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvanpVajYMFRM3Fz03w5Z5WDewkjaA6MEIFqxCBCD0gxzahdD8BWOZBC0wtnmAGj9CniihN_i15mUK0cEa5igP8mFz7LWroIPUr43ekCcKbdWqvLCF_r8A4jgb16HpCZniBCpgh-OdnCuTGQ1QUXj5RmsAkganuGB83WZXB0B9Ov_BIoS639DrvaJG9OwwP0e2ebbZeKWCUQrncEdKU8wGMUXqmhb6Ic-7cMYFsSLc-pT1SgpXoYxz33CZGAxirYP3lNsY3_hXerM");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.7</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Quick Breakfast Smoothie</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A nutritious and easy-to-make smoothie
-                                    for a quick start.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>5 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlgnc6VRn-IZlH-Kuhgyb0o-VhCdgbXeAdr4jcOGbhIfHbCEo-H8FB7q95flC37q3O69eA_D3-dBXTJl7x7l3nejGph-FvUAtnTCLdN90lrDwNWDCaCRAcoh1yaG7GSIyfn07SrK5oGFHsgzuZ08uT64ZT3MdS8r-Z6Lds9V7N445MyffSWGug2CXlpfyYgKYkfpMBe4dyCjSnU5kOpSCWr2SeORsnVp8eUscjcP9j5B9Kjw4GOa3DFSHfNn53wjbnWPKEmiFDGGQ");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.6</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Gourmet French Pastries</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">Delicate and buttery pastries with a
-                                    sweet filling.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>1 hr 30 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBM0aRQbHlWy0gIQiluVKDJqfJ8-a3V5r1hZcB-KyCIssXW_ZhmHmh9VdSSZhpnc7HKCkilg6sFhouemP-C04Nn7_66M_XYkPzfJ2lbaZgSoppLtBvyEORvRuPSQxOdTwhFCD9Zfy2z3utDgLxdbvrPGmO9eKYCMEW2FmTO0toY_zRVFa9Msl7kJ52Qt2khp4PlMbHgiWkdc1M-YUhFH924hRYAYj_sKGZMCIWxDxUrtvS59WqvjpZ0GCvDjwyjXQxyMtfCNLXN5WE");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.8</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Hearty American Chili</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A rich and savory chili with beans,
-                                    meat, and spices.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>2 hr</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASrwpvT1qxmkNPDs2x8REgAevhKrv-TPGJ-wEy_9Xcp8iMn7RFussmFT4G4GONxm0SBR1UHKxiMaWsmfjRspkPxrB1DUe4Y0mzjNq1QwJAxHZW8ozSVtPsOM2kW1uSl_18xbhSB0d05G65hnKTgVkRLfLRRzSs8q4eyQ3PoUCdE-NHzSWRCGgqHv35p320gYbgdmSA4K2fqhyDXTFEf_eUxOkzXWpcI777bG5jaaX8it7xZ08louZYrI5eIo9Do71UvFjuYVRQAXA");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.9</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Exotic Indian Biryani</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A fragrant and flavorful rice dish with
-                                    meat and spices.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>1 hr 15 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByHCGj_ek87B517oGuBKYL00jwf4MnboIGyxrB5qLYCMGETLn_BQkVkWwRxSAMXtpVcLT8C2KtzOzsvWEjG7qZgblaLDiKsocPxYaqQv6a9lJkJ9e1wynav9FMKnLRdYGj4Gf4YmCi6l4fIZQ5tImBQpP2hs6YuKZKBmfHkrmgyC0STFsJu3xB0OgPTtc0EJlbOZ0Kl8SKgRb_alnOvJnBaup6daQTxIAN9WSzopMZyTb04A9Kc7Kz3gw9N1VNkjBcHEc0Vxf1IcI");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.6</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Simple Spanish Tapas</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A variety of small, savory dishes
-                                    perfect for sharing.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>25 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9zCHGS5eE4IneLPdpkb8R6fui_rW0VHm75yhdDS_OGFRuXucyohK5uebl-cOrXcGo7C2r8hRuVnQldG8_sg0NwLC_dBJ_7iZsqSZKs-dBLJ530kLTc1R55jOOfcpqG7qcZ4bniv0-2ACaYt1Z2GgrRiNW3zM5QRtX9by0bsl2_pcfnConGOYE0_pim2EGWlQQlqa6xXiG6tGSAocCOm5sJ0qDCCM-_Tymhg5lI4g7vEj_cvy7o2ix_5-bbx6uFJkrqqqW19bNhnk");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>4.7</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Fresh Vietnamese Spring Rolls</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">Light and refreshing rolls with a peanut
-                                    dipping sauce.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>35 min</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                            <div class="relative">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKMLe9AqApLj7qPJvp6WTDDMC9mLVhCs1229ZpHbbkS6EDQ-vWSHBN1_ONp0IafZGEASh50mZQh5O9OmcFXwPPQJDuGcg76QBSd1eQMGwo28Utd6Jz_kfcG-7dOM8ukHj6wLBqwbUEkLEuheo5Hgry_BlgvTQ1HNMsLgXQ4h5vDQioLzSrGe2CUDHzKRJwmS8cZ8FzYDLT1pij4EL0HFyL6QGDDw-_RO3Xvy9wp7Q0eBwhZ35yZxr-1hAB3-hZz_XbMG5NpJn3o2o");'>
-                                </div>
-                                <div
-                                    class="absolute top-2 right-2 flex items-center gap-1 bg-white/80 backdrop-blur-sm rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
-                                    <span class="material-symbols-outlined text-sm text-amber-500">star</span>
-                                    <span>5.0</span>
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1">
-                                <h3
-                                    class="text-neutral-800 text-base font-bold leading-tight group-hover:text-primary-600 transition-colors">
-                                    Decadent Chocolate Cake</h3>
-                                <p class="text-neutral-500 text-sm mt-1 flex-1">A rich and moist cake with a creamy
-                                    chocolate frosting.</p>
-                                <div class="flex items-center gap-2 text-xs text-neutral-500 mt-3">
-                                    <span class="material-symbols-outlined text-sm">timer</span>
-                                    <span>1 hr</span>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                            <% }) %>
                     </div>
+
                     <div class="flex items-center justify-center pt-8">
                         <nav aria-label="Pagination" class="flex items-center gap-2">
                             <a class="flex size-9 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 transition-colors"
