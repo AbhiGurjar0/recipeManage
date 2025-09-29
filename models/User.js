@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
             ref: 'Follow',
         }
     ],
+    status: {
+        type: String,
+        enum: ["Pending", "Approved", "Banned"],
+        default: "Pending",
+    },
 })
 
 

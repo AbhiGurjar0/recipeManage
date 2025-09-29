@@ -18,6 +18,13 @@ router.get('/create', (req, res) => {
 })
 
 router.post('/addrecipe', isLoggedIn, upload.single('file-upload'), async (req, res) => {
+    let user = await User.findById(req.user.Id.id);
+    //check Approval
+    if (user.status == "Pending") {
+        console.log("you are not eligible for create Post ");
+        return;
+    }
+    
     const { title, price, ingre, description, category } = req.body;
     let recipe = await Recipe.create({
         images: req.file.buffer,
@@ -28,7 +35,7 @@ router.post('/addrecipe', isLoggedIn, upload.single('file-upload'), async (req, 
         category,
 
     })
-    let user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
         { _id: req.user.Id.id },
         { $push: { Recepies: recipe._id } },
         { new: true }

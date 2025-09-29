@@ -22,10 +22,10 @@ router.get('/', (req, res) => {
 router.get('/activity', isLoggedIn, async (req, res) => {
     let videos = await feed.find().populate('userId', 'name').sort({ createdAt: -1 }).limit(20);
     // let username = await User.findById(req.user.Id.id).name;
-    let loggedInUser = await User.findById(req.user.Id.id).populate('following');
+    let loggedInUser = await User.findById(req.user.Id.id);
     // console.log(loggedInUser)
     let followings = loggedInUser.following;
-    console.log(followings)
+    // console.log(followings)
     res.render('activity', { recipe: videos, loggedInUser, followings });
 });
 router.get('/profile', isLoggedIn, async (req, res) => {

@@ -53,13 +53,29 @@
                                 </div>
 
                                 <div class="flex items-center gap-3">
-                                    
-                                    <button type="button"
-                                        class="px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
-                                        style="background: var(--primary-color); color: white;"
-                                        onclick="Follow(this,'<%=res.userId._id%>')">
-                                        Follow
-                                    </button>
+                                    <% const isFollowed=(function() { try { return followings.some(function(fol) {
+                                        return fol.toString()===(res.userId && res.userId._id ?
+                                        res.userId._id.toString() : '' ); }); } catch (e) { return false; } })(); %>
+
+                                        <% if (isFollowed) { %>
+                                            <button type="button"
+                                                class="px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
+                                                style="background: var(--primary-color); color: white;"
+                                                onclick="Follow(this,'<%=res.userId._id%>')">
+                                                UnFollow
+                                            </button>
+                                            <% } else { %>
+                                                <button type="button"
+                                                    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm"
+                                                    style="background: var(--primary-color); color: white;"
+                                                    onclick="Follow(this,'<%=res.userId._id%>')">
+                                                    Follow
+                                                </button>
+                                                <% } %>
+
+
+
+
                                 </div>
                             </div>
                             <div class="container relative group w-[460px] rounded-b-xl">
@@ -105,7 +121,7 @@
     //follow user
 
     async function Follow(btn, userId) {
-        console.log("this ")
+        // console.log("this ")
         let following = false;
 
         let res = await fetch('/user/addFollower', {
@@ -118,26 +134,30 @@
         })
         res = await res.json();
         if (res.success) {
-            following = true;
-        }
+            btn.innerText = 'UnFollow'
 
-        if (following) {
-            btn.setAttribute('data-following', 'false');
-            btn.setAttribute('aria-pressed', 'false');
-            btn.style.background = 'white';
-
-            btn.style.color = '#374151';
-            btn.style.border = '1px solid rgba(0,0,0,0.06)';
-            btn.innerText = 'Follow';
         }
         else {
-            btn.setAttribute('data-following', 'true');
-            btn.setAttribute('aria-pressed', 'true');
-            btn.style.background = 'var(--primary-color)';
-            btn.style.color = 'white';
-            btn.style.border = 'none';
-            btn.innerText = 'Following';
+            btn.innerText = 'Follow'
         }
+
+        // if (following) {
+        //     btn.setAttribute('data-following', 'false');
+        //     btn.setAttribute('aria-pressed', 'false');
+        //     btn.style.background = 'white';
+
+        //     btn.style.color = '#374151';
+        //     btn.style.border = '1px solid rgba(0,0,0,0.06)';
+        //     btn.innerText = 'Follow';
+        // }
+        // else {
+        //     btn.setAttribute('data-following', 'true');
+        //     btn.setAttribute('aria-pressed', 'true');
+        //     btn.style.background = 'var(--primary-color)';
+        //     btn.style.color = 'white';
+        //     btn.style.border = 'none';
+        //     btn.innerText = 'Following';
+        // }
     }
 </script>
 
