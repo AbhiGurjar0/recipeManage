@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 dotenv.config();
+const admin = require('./routes/admin');
+app.use(express.static('public'));
 
 
 
@@ -15,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", 'ejs');
 
 app.use('/', userRouter);
+app.use('/admin', admin);
 app.listen(3000, () => {
     console.log("Server is Running...")
 })

@@ -7,7 +7,7 @@
         href="https://fonts.googleapis.com/css2?display=swap&amp;family=Work+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700"
         onload="this.rel='stylesheet'" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <title>Cookbook - Create Recipe</title>
+    <title>Create Recipe</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style type="text/tailwindcss">
@@ -41,32 +41,10 @@
 
 <body class="bg-[#faf8f7]">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden group/design-root">
-        <header
-            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e0dc] bg-white px-4 py-3 sm:px-6 lg:px-10">
-            <div class="flex items-center gap-4 text-[var(--text-primary)]">
-                <div class="size-8 text-[var(--primary-color)]">
-                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
-                            fill="currentColor"></path>
-                    </svg>
-                </div>
-                <h1 class="text-xl font-bold tracking-tight">Cookbook</h1>
-            </div>
-            <div class="flex items-center gap-4">
-                <button class="btn btn-secondary hidden sm:flex">
-                    <span class="material-symbols-outlined mr-2">add</span>
-                    New Recipe
-                </button>
-                <button
-                    class="flex sm:hidden size-10 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)]">
-                    <span class="material-symbols-outlined">add</span>
-                </button>
-                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5Sguz6edjm1nFckl9bQ6zQk8KjO5vFwCPT5f8MBm2NOZZ5edRX4oq9xU6Cp0CruMUzyNJnimCIsFUA5LPHxwF9wHTMZkKvcBe5hfOSu_6sHGRILB-2r6RJz5BzRg69eCialCnuOuMJr2ifraG8L0YdAdzXrQQTUVePgIux1XMTY1Tf4lODUdI1xgbthJcqruXf1fMp5VWUioGJKlDKKJN0sjOWvvNDdN6imwTlDRjMh6iVSv6DdRTRK9CGb3481TNky3mPdrgYj4");'>
-                </div>
-            </div>
-        </header>
+          <div class="w-full h-[10vh]">
+            <%- include('partials/navbar') %>
+        </div>
+        
         <main class="flex flex-1 justify-center p-4 sm:p-6 lg:p-8">
             <div class="w-full max-w-2xl">
                 <div class="mb-8 text-center">

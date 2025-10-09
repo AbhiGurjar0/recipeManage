@@ -5,7 +5,7 @@ const Recipe = require('../models/recipe')
 const router = express.Router();
 const recipe = require('./recipe')
 const User = require('../models/User');
-const admin = require('./admin');
+
 const feed = require('../models/feed');
 const followerModel = require('../models/follow');
 
@@ -15,7 +15,7 @@ router.post('/register', registerUser);
 router.get('/logout', logoutUser)
 
 router.use('/recipe', recipe);
-router.use('/admin', admin)
+
 router.get('/', (req, res) => {
     res.render('Home');
 })

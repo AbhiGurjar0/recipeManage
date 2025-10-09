@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
 
@@ -34,9 +34,9 @@
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'editProfile')">🖊️ Edit Profile</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'AllRecipe')">📦 My recipes</button>
+                        onclick="showSection(this,'AllRecipe')">📦  My recipes</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'Favorite')">📦Favorite</button>
+                        onclick="showSection(this,'Favorite')"> ❤️ Favorite</button>
 
                     <a href="/logout" class="text-center">
                         <button
@@ -130,10 +130,10 @@
                                                     class="py-[1px] px-2 text-sm capitalize bg-zinc-100 rounded-xl inline-block">
                                                     <%=product.category%>
                                                 </p>
-                                                <p class="text-sm text-gray-500">By Padmavati Jewels</p>
-                                                <div class="flex justify-around  flex-wrap items-center mt-3">
+                                               
+                                                <div class="flex justify-start flex-wrap items-center mt-3">
 
-                                                    <span class="text-purple-200 text-md line-through">₹
+                                                    <span class="text-purple-500 text-md">₹
                                                         <%=product.price%>
                                                     </span>
 
@@ -176,14 +176,11 @@
                                                     class="py-[1px] px-2 text-sm capitalize bg-zinc-100 rounded-xl inline-block">
                                                     <%=product.category%>
                                                 </p>
-                                                <p class="text-sm text-gray-500">By Padmavati Jewels</p>
-                                                <div class="flex justify-around  flex-wrap items-center mt-3">
+                                                <div class="flex justify-start flex-wrap items-center mt-3">
 
-                                                    <span class="text-purple-200 text-md line-through">₹
+                                                    <span class="text-purple-500 text-md">₹
                                                         <%=product.price%>
                                                     </span>
-
-
                                                 </div>
 
                                             </div>

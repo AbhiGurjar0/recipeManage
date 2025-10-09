@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const generateToken = require('../utils/genrateToken')
 

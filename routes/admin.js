@@ -25,7 +25,19 @@ router.post('/banUser/:Id', async (req, res) => {
     }, {
         new: true,
     });
-    res.redirect('/admin');
+    res.json({ success: true });
+
+})
+
+//Unban user
+router.post('/unbanUser/:Id', async (req, res) => {
+
+    await User.findByIdAndUpdate(req.params.Id, {
+        status: "Approved",
+    }, {
+        new: true,
+    });
+    res.json({ success: true });
 
 })
 
@@ -37,22 +49,35 @@ router.post('/deleteUser/:Id', async (req, res) => {
     await User.findByIdAndDelete(req.params.Id, {
         new: true,
     });
-    res.redirect('/admin');
+    res.json({success:true});
 
 })
 //Approve user
-router.post('/approveUser/:Id',async (req,res)=>{
-    await User.findByIdAndUpdate(req.params.Id,{
-        status:"Approved",
-    },{
-        new:true,
-    })
-    res.redirect('/admin');
-})
+router.post('/approveUser', async (req, res) => {
+    try {
+        const { Id } = req.body;
+        console.log(Id);
+        const user = await User.findByIdAndUpdate(
+            Id,
+            { status: "Approved" },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 
 //delete Recipe
 
-router.delete('/deleteRecipe/:Id',async (req,res)=>{
+router.delete('/deleteRecipe/:Id', async (req, res) => {
     await Recipe.findByIdAndDelete(req.params.Id);
     return res.redirect('/admin');
 })

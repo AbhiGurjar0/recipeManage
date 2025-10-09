@@ -42,7 +42,7 @@
       }
     </style>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <title>Recipe Management and Sharing Platform</title>
+    <title>Recipe Management</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
 </head>
 
@@ -96,7 +96,7 @@
                       text-xs font-semibold text-neutral-700 shadow-sm">
                                             <span class="material-symbols-outlined text-sm text-amber-500">star</span>
                                             <span>
-                                                <%= rec.rating %>
+                                                <%= rec.reviews[0]?.rating %>
                                             </span>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                         <div class="flex items-center justify-between mt-4">
                                             <div class="flex items-center gap-1.5 text-sm font-medium text-primary-600">
                                                 <span class="material-symbols-outlined text-base">sell</span>
-                                                <span>$<%= rec.price %></span>
+                                                <span>₹<%= rec.price %></span>
                                             </div>
 
                                             <!-- Example tag -->
@@ -131,28 +131,7 @@
                             <% }) %>
                     </div>
 
-                    <div class="flex items-center justify-center pt-8">
-                        <nav aria-label="Pagination" class="flex items-center gap-2">
-                            <a class="flex size-9 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 transition-colors"
-                                href="#">
-                                <span class="material-symbols-outlined text-xl">chevron_left</span>
-                            </a>
-                            <a aria-current="page"
-                                class="flex size-9 items-center justify-center rounded-full text-sm font-bold bg-primary-500 text-white"
-                                href="#">1</a>
-                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
-                                href="#">2</a>
-                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
-                                href="#">3</a>
-                            <span class="text-neutral-500">...</span>
-                            <a class="flex size-9 items-center justify-center rounded-full text-sm font-medium text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors"
-                                href="#">8</a>
-                            <a class="flex size-9 items-center justify-center rounded-full text-neutral-500 hover:bg-neutral-100 transition-colors"
-                                href="#">
-                                <span class="material-symbols-outlined text-xl">chevron_right</span>
-                            </a>
-                        </nav>
-                    </div>
+                    
                 </div>
             </main>
         </div>

@@ -15,7 +15,7 @@
         :root {
         --primary-color: #4f46e5;--primary-hover-color: #4338ca;}
     </style>
-    <title>Stitch Design</title>
+    <title>Admin</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
@@ -227,6 +227,7 @@
                                                     class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
                                                     <span class="material-symbols-outlined">delete</span>
                                                 </button>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -256,7 +257,7 @@
                             <tbody>
                                 <% if(user.length>0){%>
                                     <%user.slice().reverse().forEach(function(usr){%>
-                                        <tr class="border-b">
+                                        <tr class="border-b ">
                                             <td class="hidden md:inline-block  px-4 py-2">
                                                 <%=usr._id%>
                                             </td>
@@ -267,14 +268,46 @@
                                                 <%=usr.email%>
                                             </td>
 
-                                            <td class="hidden md:inline-block px-4 py-2 text-green-500 font-semibold">
-                                                Approved</td>
-                                            <td class="px-4 py-2">
-                                                <a href="/admin/userDetails/<%= usr._id %>"
-                                                    class="text-blue-500 hover:text-blue-700">View</a>
-                                                <a href="/admin/userDetails/<%= usr._id %>"
-                                                    class="text-blue-500 hover:text-blue-700">Ban</a>
+                                            <td class="md:inline-block px-4 py-2 text-green-500 font-semibold">
+                                                <%=usr.status%>
+                                            </td>
+                                            <td class="px-4 py-2 ">
+                                                <div class="flex gap-2 items-center ">
+                                                    <a href="/admin/userDetails/<%= usr._id %>"
+                                                        class="text-blue-500 hover:text-blue-700 cursor-pointer"> <img
+                                                            class="w-[1.5vw] h-[1.5vw] object-cover"
+                                                            src="/images/eye.png" alt="check"></a>
 
+                                                    <%if(usr.status=="Pending"){%>
+                                                        <div onclick="Approve(this,'<%=usr._id%>')"
+                                                            class="w-[1vw] h-[1vw] cursor-pointer">
+                                                            <img class="w-full h-full object-cover"
+                                                                src="/images/check-button.png" alt="check">
+                                                        </div>
+                                                        <% }%>
+                                                            <% if(usr.status=="Banned" ){%>
+                                                                <div onclick="unBan(this,'<%=usr._id%>')"
+                                                                    class="w-[1vw] h-[1vw] cursor-pointer">
+                                                                    <img class="w-full h-full object-cover"
+                                                                        src="/images/mobile.png" alt="check">
+                                                                </div>
+                                                                <% } else{%>
+
+
+                                                                    <div onclick="Ban(this,'<%=usr._id%>')"
+                                                                        class="w-[1vw] h-[1vw] cursor-pointer">
+                                                                        <img class="w-full h-full object-cover"
+                                                                            src="/images/ban.png" alt="check">
+                                                                    </div>
+                                                                    <% }%>
+
+                                                                        <div onclick="deleteUser(this,'<%=usr._id%>')"
+                                                                            class="w-[1vw] h-[1vw] cursor-pointer">
+                                                                            <img class="w-full h-full object-cover"
+                                                                                src="/images/bin.png" alt="check">
+                                                                        </div>
+
+                                                </div>
 
 
                                             </td>
@@ -352,6 +385,91 @@
         })
         document.getElementById(id).classList.remove('hidden');
 
+    }
+    async function Approve(ele, Id) {
+        console.log(Id)
+
+        try {
+            const res = await fetch(`/admin/approveUser`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Id }),
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                ele.classList.add('hidden');
+            } else {
+                console.error("Approval failed:", data.message);
+            }
+        } catch (err) {
+            console.error("Error approving user:", err);
+        }
+    }
+    async function Ban(ele, Id) {
+        console.log(Id)
+
+        try {
+            const res = await fetch(`/admin/banUser/${Id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // body: JSON.stringify({ Id }),
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                ele.classList.add('hidden');
+            } else {
+                console.error("Approval failed:", data.message);
+            }
+        } catch (err) {
+            console.error("Error approving user:", err);
+        }
+    }
+
+
+    async function unBan(ele, Id) {
+        console.log(Id)
+
+        try {
+            const res = await fetch(`/admin/unbanUser/${Id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // body: JSON.stringify({ Id }),
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                ele.classList.add('hidden');
+            } else {
+                console.error("Approval failed:", data.message);
+            }
+        } catch (err) {
+            console.error("Error approving user:", err);
+        }
+    }
+    async function deleteUser(ele, Id) {
+        console.log(Id)
+
+        try {
+            const res = await fetch(`/admin/deleteUser/${Id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                window.location.href='/admin'
+            } else {
+                console.error("Approval failed:", data.message);
+            }
+        } catch (err) {
+            console.error("Error approving user:", err);
+        }
     }
 </script>
 
