@@ -16,6 +16,10 @@ const recipeSchema = new mongoose.Schema({
         comment: String,
         rating: Number,
     }],
+    createdBy:{
+         type: mongoose.Schema.Types.ObjectId, 
+         ref: 'User' ,
+    }
 });
 
 module.exports = mongoose.model("Recipe", recipeSchema);

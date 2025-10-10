@@ -33,6 +33,7 @@ router.post('/addrecipe', isLoggedIn, upload.single('file-upload'), async (req, 
         description,
         ingredients: ingre,
         category,
+        createdBy:user,
 
     })
     await User.findOneAndUpdate(
@@ -90,7 +91,8 @@ router.post('/edit-product/:Id', upload.single('file-upload'), async (req, res) 
 
 })
 router.get('/details/:id', isLoggedIn, async (req, res) => {
-    const product = await Recipe.findById(req.params.id);
+    const product = await Recipe.findById(req.params.id).populate('reviews.user' ,'name').lean();
+
     const Id = req.params.id;
     const userId = req.user.Id.id;
     const user = await User.findById(userId);
@@ -110,9 +112,7 @@ router.get('/details/:id', isLoggedIn, async (req, res) => {
     }
     product.avgRating = avgRating;
 
-
-
-    res.render('recepieDetails', { product, isFavorite });
+    res.render('recepieDetails', { product, isFavorite ,review:product.reviews });
 
 })
 router.get('/edit-product/:Id', async (req, res) => {
@@ -129,7 +129,7 @@ router.post('/:id/review', isLoggedIn, async (req, res) => {
         const newReview = {
             user: req.user.Id.id,
             rating,
-            review
+            comment:review
         };
 
         await Recipe.findByIdAndUpdate(recipeId, {

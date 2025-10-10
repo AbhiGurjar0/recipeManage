@@ -51,11 +51,7 @@
                         <span class="material-symbols-outlined">group</span>
                         <span class="text-sm font-medium">Users</span>
                     </a>
-                    <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
-                        href="#">
-                        <span class="material-symbols-outlined">flag</span>
-                        <span class="text-sm font-medium">Reports</span>
-                    </a>
+                   
                     <a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors duration-200 mt-2"
                         href="#">
                         <span class="material-symbols-outlined">settings</span>
@@ -78,11 +74,7 @@
                         </button>
                     </div>
                     <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-                    <button
-                        class="flex items-center gap-2 bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover-color)] transition-colors duration-300 transform hover:scale-105">
-                        <span class="material-symbols-outlined">add</span>
-                        <span>New Recipe</span>
-                    </button>
+
                 </header>
                 <div class="p-6 md:p-8">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -90,37 +82,37 @@
                             class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
                             <div class="flex items-center justify-between">
                                 <p class="text-gray-600 text-sm font-medium">Total Users</p>
-                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                               
                             </div>
-                            <p class="text-gray-900 text-3xl font-bold mt-2">1,234</p>
-                            <p class="text-green-500 text-sm font-semibold mt-1">+12% this month</p>
+                            <p class="text-gray-900 text-3xl font-bold mt-2"><%=user.length%></p>
+                           
                         </div>
                         <div
                             class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
                             <div class="flex items-center justify-between">
                                 <p class="text-gray-600 text-sm font-medium">Active Recipes</p>
-                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                                
                             </div>
-                            <p class="text-gray-900 text-3xl font-bold mt-2">567</p>
-                            <p class="text-green-500 text-sm font-semibold mt-1">+5% this month</p>
+                            <p class="text-gray-900 text-3xl font-bold mt-2"><%=recipe.length%></p>
+                           
                         </div>
                         <div
                             class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
                             <div class="flex items-center justify-between">
                                 <p class="text-gray-600 text-sm font-medium">Pending Approvals</p>
-                                <span class="material-symbols-outlined text-red-500">arrow_downward</span>
+                                
                             </div>
-                            <p class="text-gray-900 text-3xl font-bold mt-2">8</p>
-                            <p class="text-red-500 text-sm font-semibold mt-1">-2% this month</p>
+                            <p class="text-gray-900 text-3xl font-bold mt-2"><%=pending%></p>
+                           
                         </div>
                         <div
                             class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
                             <div class="flex items-center justify-between">
-                                <p class="text-gray-600 text-sm font-medium">Reports</p>
-                                <span class="material-symbols-outlined text-green-500">arrow_upward</span>
+                                <p class="text-gray-600 text-sm font-medium">Approved users</p>
+                               
                             </div>
-                            <p class="text-gray-900 text-3xl font-bold mt-2">2</p>
-                            <p class="text-green-500 text-sm font-semibold mt-1">+10% this month</p>
+                            <p class="text-gray-900 text-3xl font-bold mt-2"><%=approved%></p>
+                          
                         </div>
                     </div>
                 </div>
@@ -136,11 +128,7 @@
                         </button>
                         <h1 class="text-2xl font-bold text-gray-800">Recipes</h1>
                     </div>
-                    <button
-                        class="flex items-center gap-2 bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg hover:bg-[var(--primary-hover-color)] transition-colors duration-300 transform hover:scale-105">
-                        <span class="material-symbols-outlined">add</span>
-                        <span>New Recipe</span>
-                    </button>
+                   
                 </header>
                 <div class="p-6 md:p-8">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
@@ -202,28 +190,24 @@
                                                     <span class="font-semibold text-gray-800">
                                                         <%=rec.title%>
                                                     </span>
-                                                    <button
+                                                    <a href="/admin/details/<%=rec._id%>"><button
                                                         class="text-xs text-indigo-600 hover:underline text-left">View
                                                         Details</button>
+                                                        </a>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4">John Doe</td>
+                                        <td class="px-6 py-4">
+                                            <%=rec.createdBy?.name%>
+                                        </td>
                                         <td class="px-6 py-4">
                                             <span
-                                                class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Approved</span>
+                                                class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Active</span>
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center justify-center gap-2">
-                                                <label class="switch">
-                                                    <input checked="" type="checkbox" />
-                                                    <span class="slider"></span>
-                                                </label>
-                                                <button
-                                                    class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </button>
-                                                <button
+
+                                                <button onclick="deleteRecipe('<%=rec._id%>')"
                                                     class="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition-colors duration-200">
                                                     <span class="material-symbols-outlined">delete</span>
                                                 </button>
@@ -463,13 +447,33 @@
             const data = await res.json();
 
             if (data.success) {
-                window.location.href='/admin'
+                window.location.href = '/admin'
             } else {
-                console.error("Approval failed:", data.message);
+                console.error("Deletion failed:", data.message);
             }
         } catch (err) {
-            console.error("Error approving user:", err);
+            console.error("Error deleting user:", err);
         }
+    }
+    async function deleteRecipe(id) {
+        try {
+            const res = await fetch(`/admin/deleteRecipe/${id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                window.location.href = '/admin'
+            } else {
+                console.error("deletion failed:", data.message);
+            }
+        } catch (err) {
+            console.error("Error deleteing recipe:", err);
+        }
+
+
     }
 </script>
 

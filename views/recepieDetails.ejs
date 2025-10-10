@@ -6,12 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recipe Details</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link as="style"
+        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900"
+        onload="this.rel='stylesheet'" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
+<style type="text/tailwindcss">
+    :root {
+        --primary-color: #f2780d;
+        --secondary-color: #f5f2f0;
+        --text-primary: #181411;
+        --text-secondary: #8a7460;
+        --background-color: #ffffff;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
 
 <body>
-
+    <div class="w-full h-[10vh]">
+        <%- include('partials/navbar') %>
+    </div>
     <div class="flex flex-col md:flex-row gap-6 md:px-32 pt-10 mb-10 border-b-2 px-10 overflow-hidden">
         <!-- Left Section: Thumbnails -->
+
         <div class="hidden md:block md:w-[5vw] space-y-4">
             <% product.images.forEach(function(image, index) { %>
                 <img src="data:image/jpeg;base64,<%= image.toString('base64') %>" alt="Product Image"
@@ -56,9 +82,9 @@
             </div>
 
             <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded-md">🎉 Offer: 50% Off On Labour</p>
-            <button class="bg-gray-100 text-black py-2 px-4 rounded-lg w-full">💎 Purchase & earn 21946 Points</button>
 
             <!-- Buttons Section -->
+
             <div class="flex flex-col gap-3 pt-4">
 
 
@@ -125,15 +151,51 @@
             <%=product.description%>
         </p>
     </div>
+    <div class="max-w-2xl mx-10 p-6 ">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Customer Reviews</h2>
 
+        <%review?.forEach((rev)=>{%>
+
+
+            <!-- Review list container -->
+            <div id="reviews" class="space-y-5">
+                <!-- Example Review -->
+                <div class="border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-start gap-4">
+                    <img src="https://i.pravatar.cc/60" alt="user" class="w-12 h-12 rounded-full object-cover" />
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-semibold text-gray-800">
+                                <%= rev.user?.name || 'Anonymous' %>
+                            </h4>
+
+                        </div>
+                        <div class="flex items-center gap-1 mt-1">
+                            <span class="text-yellow-400">
+                                <% for (let i=1; i <=5; i++) { %>
+                                    <%= i <=rev.rating ? '★' : '☆' %>
+                                        <% } %>
+                            </span>
+                            <span class="text-gray-500 text-sm ml-2">
+                                <%= rev.rating %>.0
+                            </span>
+                        </div>
+                        <p class="mt-2 text-gray-700 text-sm">
+                            <%= rev?.comment%>
+                        </p>
+                    </div>
+                </div>
+                <% })%>
+
+
+            </div>
+    </div>
 
 
     <script>
-        const images = [
-        <% product.images.forEach(function (image, index) { %>
-            `data:image/jpeg;base64,<%= image.toString('base64') %>` <%= index < product.images.length - 1 ? ',' : '' %>
-        <% }) %>
-    ];
+        const images = product.images.map((image) => {
+            return `data:image/jpeg;base64,${image.toString('base64')}`;
+        });
+
 
         function changeImage(index) {
             const mainImage = document.getElementById('mainImage');

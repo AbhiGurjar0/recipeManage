@@ -50,155 +50,88 @@
                         Join our community of food lovers and explore a world of culinary delights. Find inspiration,
                         share your creations, and connect with fellow cooks.
                     </p>
-                    <!-- <form onsubmit="handleSearch(event)" class="max-w-2xl mx-auto" >
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-neutral-500">search</span>
-                            <input
-                                class="form-input w-full rounded-full bg-white/90 text-lg py-4 pl-14 pr-32 text-[var(--text-primary)] placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent"
-                                placeholder="Search recipes..." type="search" name="query" />
-                            <button
-                                class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base font-bold hover:bg-orange-600 transition-colors">
-                                Search
-                            </button>
-                        </div>
-                    </form> -->
+
                 </div>
             </section>
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <section>
                     <h2 class="text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-8">Trending Recipes</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                        <div
-                            class="group flex flex-col gap-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                            <a class="block" href="#">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-lg"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkpMphkXKqw7HlDfa5NffpUYjzEn0PDM0a55JvMWlZqQ1nn074U0KFqVXkHzCZkQlgQxInekruUvQziBt_C3wxeUVecDonYy6xg9c56SB0tau5S-JeWy80e99QLt1s_LMMZB8rmpGXou4xLkp1qttBY8neusHMNy6kROJfD1U7bQz1Wvc0yiA9u_vLEI_RQaoTSolzYyhucViOe1W8OI-G0_aGmJpPGt3juSpI0TikSdeDkeP4cAGqVCrNkiLAJ1nb7pGWwOYfZfM");'>
+                        <% for(let rec = 0;rec<4 && rec<recipes.length;rec++){ %>
+                            <a href="/recipe/details/<%=rec._id%>" class="group block">
+                                <div class="flex flex-col bg-white rounded-2xl shadow-sm overflow-hidden 
+                  hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300">
+
+                                    <!-- Image with overlay -->
+                                    <div class="relative">
+                                        <img src="data:image/jpeg;base64,<%= recipes[rec].images[0]?.toString('base64') %>"
+                                            class="w-full h-44 sm:h-60 object-cover object-center transition-transform duration-300 group-hover:scale-100" />
+
+                                        <!-- Gradient overlay -->
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent">
+                                        </div>
+
+                                        
+                                    </div>
+
+                                    <!-- Card content -->
+                                    <div class="p-4 flex flex-col flex-1">
+                                        <h3 class="text-neutral-900 text-lg font-bold leading-snug 
+                     group-hover:text-primary-600 transition-colors line-clamp-1">
+                                            <%= recipes[rec].title %>
+                                        </h3>
+
+                                        <p class="text-neutral-600 text-sm mt-2 flex-1 line-clamp-2">
+                                            <%= recipes[rec].description %>
+                                        </p>
+
+                                        <!-- Price + meta -->
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-1.5 text-sm font-medium text-primary-600">
+                                                <span class="material-symbols-outlined text-base">sell</span>
+                                                <span>₹<%= recipes[rec].price %></span>
+                                            </div>
+
+                                            <!-- Example tag -->
+                                            <span
+                                                class="px-2 py-0.5 text-xs rounded-full bg-primary-50 text-primary-700 font-medium">
+                                                Popular
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
-                            <div class="p-4 flex-1">
-                                <h3
-                                    class="text-lg font-semibold leading-snug text-[var(--text-primary)] group-hover:text-[var(--primary-color)] transition-colors">
-                                    Spiced Chickpea Stew with Coconut and Turmeric</h3>
-                                <p class="text-sm text-[var(--text-secondary)] mt-1">By Sarah Miller</p>
-                            </div>
-                        </div>
-                        <div
-                            class="group flex flex-col gap-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                            <a class="block" href="#">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-lg"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZWQEoWGweKXHNJ-n_cdNIqq6zhjUFSVjNo7Wm24XfwlxB81GyOImDcxPHomzXKppBLHbTMBfjZXpqS1mGLJ4URk2lpE8lCn3rGQ9T2qztxQ0cv9ZWTkzCMJtML6DPm3_BrC-2-7FS6AjnNG0hxx8dYhp0_qZSBIjQGwg8rWdwPzrTyLgmeiNDvYbAHOnzrpsCtp9F_wJEVsWjRBjD2Y-CsSuk5wHVvFKhhL-vu-rjewMBexiYm2uZlEyJ0XpKVJ2lGG-GZRaMTdc");'>
-                                </div>
-                            </a>
-                            <div class="p-4 flex-1">
-                                <h3
-                                    class="text-lg font-semibold leading-snug text-[var(--text-primary)] group-hover:text-[var(--primary-color)] transition-colors">
-                                    Creamy Tomato Pasta with Burrata</h3>
-                                <p class="text-sm text-[var(--text-secondary)] mt-1">By David Chen</p>
-                            </div>
-                        </div>
-                        <div
-                            class="group flex flex-col gap-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                            <a class="block" href="#">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-lg"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgl2gYd-xRVyTL0g8fZX1irAbdUaT3IzJofNfCLFdy_K2Wzm4zgFxR6ZKJ_xn4Or8klTNInul4yrrDGPNfgXzMmadJKEa5MPqdEpT_4mcVghGPUA0oyzxoQDndjSyhTY5vYQBoj4TuW41mkvtbbDh6CIcCi1mwPyet030cVGHMTRWdb9WQhYCmjmiF2qTAqvrzmPHnXyjWTF2k-1g79Hd_v5WGtMjJLDrfwSqjYQWBzKTYbKwRbt9E6FC3aqMmHqLkI5WItUTNtuA");'>
-                                </div>
-                            </a>
-                            <div class="p-4 flex-1">
-                                <h3
-                                    class="text-lg font-semibold leading-snug text-[var(--text-primary)] group-hover:text-[var(--primary-color)] transition-colors">
-                                    Lemon Herb Roasted Chicken with Vegetables</h3>
-                                <p class="text-sm text-[var(--text-secondary)] mt-1">By Emily Carter</p>
-                            </div>
-                        </div>
-                        <div
-                            class="group flex flex-col gap-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                            <a class="block" href="#">
-                                <div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-lg"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr6usPOLpKzAxzorRQI2KmEt499VF41YmimIbFqaRd5oYB229OxjK7GrdUKy53JdWn93Di3JMdd8zeRhDI4KCyLfpJzBVjAR4USgJROA_ow6r0OFBAGehZeSY31EK-KyxFyBnnP6-TsHyXNAfcWvA9Jnlw5RtqEju671Ml8caivFIEX7bzjEuqEuHRhIQT4byy_6-p4DD5pffe-0MnyGsM2X6-_HRTgs5SpT8y9gm6JXBvhVWdeJL3QjoQUBP9Ck4d_SaczJaAEks");'>
-                                </div>
-                            </a>
-                            <div class="p-4 flex-1">
-                                <h3
-                                    class="text-lg font-semibold leading-snug text-[var(--text-primary)] group-hover:text-[var(--primary-color)] transition-colors">
-                                    Chocolate Avocado Mousse</h3>
-                                <p class="text-sm text-[var(--text-secondary)] mt-1">By Alex Turner</p>
-                            </div>
-                        </div>
+                            <% } %>
+
                     </div>
                 </section>
                 <section class="mt-16">
                     <h2 class="text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-8">Explore Categories
                     </h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYr_idzn_-Kzx38kwhARkCTqo0kvUaOYSnZlMumBZkTXGYsg4OxOSOd7T_fKg_ZW7Hu7H69FbOm4mrKoFsChPs--xu_Jp3hT7w_g2j4d0jduU5xjs87AHRkVx6CiBwmQ-3oriKUO5AxkIVspDwG6sWoFiBuGuvbtKnok8SXCYi_xyx2R0nixe1W38T0iN2JWoJfotgw6pCb2YGUbKLcSDnbjCciaMoFz2iqEHm7GlX6ZVCDpIC1pItjHa9exWOaPdRZXvoZlYCOIs");'>
+                        <%categories.forEach((cat)=>{%>
+                            <a class="group block text-center" href="/collection/<%=cat%>">
+                                <div class="relative overflow-hidden rounded-lg">
+                                    <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYr_idzn_-Kzx38kwhARkCTqo0kvUaOYSnZlMumBZkTXGYsg4OxOSOd7T_fKg_ZW7Hu7H69FbOm4mrKoFsChPs--xu_Jp3hT7w_g2j4d0jduU5xjs87AHRkVx6CiBwmQ-3oriKUO5AxkIVspDwG6sWoFiBuGuvbtKnok8SXCYi_xyx2R0nixe1W38T0iN2JWoJfotgw6pCb2YGUbKLcSDnbjCciaMoFz2iqEHm7GlX6ZVCDpIC1pItjHa9exWOaPdRZXvoZlYCOIs");'>
+                                    </div>
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
+                                    </div>
                                 </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Desserts</p>
-                        </a>
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWzxPjpAxjpq9vtVPunq6iHxjVSQXhWCHa4EpQMeVPcWjMXdeBYe8LE0bsA3eYarQ4mr801DxRrW1k32XBTwpiZXX1CPD0tjwoPW92fWVGMckheorWtHHrifN2YVEFtwcRlvDePZcyjpPhT-YEyNE7KgEuysiU43_fIFcyeP_U3Wr3AiOdJJh4nDgIgE1AsYY9H5vhW-54KYYJpROZxn0DQlwsNwwcdRnrn5SrQurOmeh17Qm-gVqiTmyrFve2Wpu4pJCUFHho0dA");'>
-                                </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Vegan</p>
-                        </a>
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0XY03PV0MLpyvffdjrnzV4Er5q0i-fbAU3tOGD0nZBNAaSB6mt6xI8ZXSq_kMDAXI9ahDoAgHzYcbFAYCHco5fR-jvUTDf-KVpYqJUBKWH8UZHM3isEx_bzIn8vwFPEH6-fEGsVnO1YC5MlWjZLSqKsFVJqPshVK9pFwbO6BCeh3WHnhNChIyVPVhwHgsSnSYwfLxWgXWGxun5NaoUvPHdNE6Xzn8NfzqFC6QQedVqYY8ybCBMRID1zcGqxZFZ9pjcpwuE6JW7ME");'>
-                                </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Quick Meals</p>
-                        </a>
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAtNMj1NRsij_HpePcH-M6jIgqWb6gnFGvl_QQ9oFWfBxVHJggsRYaZhe0yqy0xQO56aS_sGxwoaSb89oBwa1xUO9R5QDLZwPIWc43VvCzmHRqGoko0_HC2QtTvSdPgN2Nw18QGn_P_8vb9n3H-5ZNJW_tR2xABzpoAFIB4hOYW5PUGuj4YwI6vg2CQ1Y8Z379tzBK9l39-ZbEUx3l255CmzX2MQbd6M6hKMhCXwpUlTaBF73zM0hfGg5MT7einRA1L4H3YxwnUY04");'>
-                                </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Breakfast</p>
-                        </a>
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBT-GHzSErCzUGF4Te6l2lh3CjOzIsiTP9ZzPjS2_SIbIvrRbHizBj0jBNlhom3L5GugNCWFAWOa5Xdl8f5I2eisgJsOj1TEPB7L3RPnT4Zxe43njzTT0en4DQ3GshQzLFfKjSoFiAyVaJnEWCye9AtsmUbxKWuMDcM91UZ-MbG7bhYb-bp6LYADoFbJtxRnYPZLH_thTZ8HwfyQxrBhA43XLEyLVnoDe8AHyaYYaAGa8tk4JO8lXaz83exOm-sywrBT1hyubMGjy0");'>
-                                </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Italian</p>
-                        </a>
-                        <a class="group block text-center" href="#">
-                            <div class="relative overflow-hidden rounded-lg">
-                                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover transition-transform duration-300 group-hover:scale-105"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYXHJmhy7xzaTHnJcAwwa0ZSmGrjtf9INZN5v1fzQ5S8p5d3R9WPNg6BXqgg58i3u9Z4cpskwPfCvfVD8FvVE5vgwb2jDXcaaTDRb0uhCFtzcRR6XXPYTTD98HJLdk6JW1XQc7JYK0G7KMChtA79HLpKaOLr1BF1tMFe9ojMNEsg7cJ4AbCCldnTunVMckIPjP9D0RumRuyPYmkNeo_t45am1lxR99DKIvWvfaNZf15dLlv7AV2ABTjKATJbc9y8IKCrd7x5cZ9Nw");'>
-                                </div>
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors">
-                                </div>
-                            </div>
-                            <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">Baking</p>
-                        </a>
+                                <p class="mt-3 text-lg font-semibold text-[var(--text-primary)]">
+                                    <%=cat%>
+                                </p>
+                            </a>
+                            <%})%>
                     </div>
                 </section>
             </div>
         </main>
     </div>
     <footer class="bg-gray-800 text-white text-center py-4">
-  <p class="text-sm">&copy; 2025 YourCompany. All rights reserved.</p>
-</footer>
+        <p class="text-sm">&copy; 2025 YourCompany. All rights reserved.</p>
+    </footer>
 
 
 
