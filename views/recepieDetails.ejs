@@ -108,6 +108,14 @@
                                 ✍️ Add Review
                             </button>
             </div>
+           <% if(!existInCollections){%>
+
+            <button onclick="AddToCollections(this,'<%=product._id%>')"
+                class="w-full  rounded bg-zinc-100 rounded px-2 py-2">Add to
+                collection</button>
+
+           <%}%>
+
         </div>
     </div>
 
@@ -189,6 +197,18 @@
 
             </div>
     </div>
+    <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50 hidden" id="CollectionForm">
+        <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm">
+            <h3 class="text-lg font-bold mb-4 text-primary-700">Add to Collection</h3>
+            <div id="AllCollections" class="flex flex-col gap-2">
+                <!-- Collection items will be appended here -->
+            </div>
+            <button onclick="document.getElementById('CollectionForm').classList.add('hidden')"
+                class="mt-6 w-full py-2 rounded-lg bg-primary-600 text-black font-semibold hover:bg-primary-700 transition">
+                Close
+            </button>
+        </div>
+    </div>
 
 
     <script>
@@ -251,6 +271,63 @@
 
 
         }
+
+        //add to collections
+
+        async function AddToCollections(element, Id) {
+            let form = document.getElementById("CollectionForm");
+            let Collection = document.getElementById('AllCollections');
+
+            let response = await fetch("/recipe/AllCollections", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            });
+
+            let data = await response.json();
+            Collection.innerHTML = '';
+            data.Collection.forEach((col) => {
+                let span = document.createElement('span');
+                span.textContent = col.name || "Unnamed Collection"; // optional
+                span.setAttribute("collectionId", col._id);
+                span.setAttribute("recipeId", Id);
+                span.className = "cursor-pointer px-4 py-2 bg-zinc-100 rounded-lg  text-primary-700 font-medium hover:bg-primary-200 transition-colors";
+                span.addEventListener("click", () => AddToCol(span));
+                Collection.appendChild(span);
+            });
+
+            form.classList.remove('hidden');
+
+        }
+        async function AddToCol(element) {
+            let form = document.getElementById("CollectionForm");
+            let recipeId = element.getAttribute("recipeId");
+            let collectionId = element.getAttribute("collectionId");
+
+            try {
+                let response = await fetch("/recipe/AddToCollections", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ recipeId, collectionId })
+                });
+
+                let result = await response.json();
+                form.classList.add('hidden');
+
+                if (!response.ok) {
+                    console.error("Failed to add recipe:", result.error);
+                } else {
+                    console.log(result.message);
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+            }
+
+
+
+
+        }
+
 
 
     </script>

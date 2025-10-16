@@ -12,6 +12,7 @@ const User = require("../models/User");
 
 const feed = require("../models/feed");
 const followerModel = require("../models/follow");
+const Collection = require("../models/collection");
 
 router.post("/login", loginUser);
 router.post("/register", registerUser);
@@ -22,7 +23,7 @@ router.use("/recipe", recipe);
 router.get("/", async (req, res) => {
   let categories = await Recipe.distinct("category");
   let recipes = await Recipe.find();
-  res.render("Home", { categories , recipes});
+  res.render("Home", { categories, recipes });
 });
 router.get("/activity", isLoggedIn, async (req, res) => {
   let videos = await feed
@@ -38,6 +39,7 @@ router.get("/activity", isLoggedIn, async (req, res) => {
   res.render("activity", { recipe: videos, loggedInUser, followings });
 });
 router.get("/profile", isLoggedIn, async (req, res) => {
+  const collections = await Collection.find().populate("recipes");
   const user = await User.findById(req.user.Id.id)
     .populate("Recepies")
     .populate("favorite");
@@ -54,6 +56,7 @@ router.get("/profile", isLoggedIn, async (req, res) => {
     addresses: [],
     recipe,
     Favorite: favorite,
+    Collections: collections,
   });
 });
 
@@ -230,7 +233,7 @@ router.post("/user/addFollower", isLoggedIn, async (req, res) => {
 router.get("/collection/:recipe", isLoggedIn, async (req, res) => {
   let recipes = await Recipe.find({ category: req.params.recipe });
 
-  res.render("categoryData", { recipes, recipeName:req.params.recipe });
+  res.render("categoryData", { recipes, recipeName: req.params.recipe });
 });
 
 module.exports = router;

@@ -11,7 +11,7 @@
 <body>
     <a href="/">
         <div class="absolute top-2 text-black right-2 w-[5vw] h-[5vh] z-10">
-            <h1>Home</h1>
+            <h1 class="bg-red-400 p-2 rounded ">Home</h1>
         </div>
     </a>
     <div class="relative min-h-screen flex ">
@@ -34,9 +34,11 @@
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'editProfile')">🖊️ Edit Profile</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
-                        onclick="showSection(this,'AllRecipe')">📦  My recipes</button>
+                        onclick="showSection(this,'AllRecipe')">📦 My recipes</button>
                     <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
                         onclick="showSection(this,'Favorite')"> ❤️ Favorite</button>
+                    <button class="flex items-center px-4 py-2 w-[80%] hover:bg-gray-900 rounded-lg"
+                        onclick="showSection(this,'Collection')"> ❤️ MyCollections</button>
 
                     <a href="/logout" class="text-center">
                         <button
@@ -88,6 +90,10 @@
                         class="cursor-pointer mt-6 text-lg font-semibold text-green-600 hover:text-green-800 transition-colors duration-200 bg-green-100 px-4 py-2 rounded-lg inline-block shadow-sm">
                         Add Recipe Video +
                     </h1>
+                    <h1 onclick="createCollection()"
+                        class="cursor-pointer mt-6 text-lg font-semibold text-green-600 hover:text-green-800 transition-colors duration-200 bg-green-100 px-4 py-2 rounded-lg inline-block shadow-sm">
+                        Create Collections +
+                    </h1>
                 </div>
 
                 <div id="editProfile" class="content hidden">
@@ -130,7 +136,7 @@
                                                     class="py-[1px] px-2 text-sm capitalize bg-zinc-100 rounded-xl inline-block">
                                                     <%=product.category%>
                                                 </p>
-                                               
+
                                                 <div class="flex justify-start flex-wrap items-center mt-3">
 
                                                     <span class="text-purple-500 text-md">₹
@@ -196,6 +202,58 @@
                         <% }) %>
 
                 </div>
+                <div id="Collection"
+                    class="content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
+                    <% Collections.forEach(function(col) { %>
+                        <%if(col.recipes.length>0){%>
+                        <div class="col-span-full">
+                            <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 border-b pb-2 mb-4">
+                                <%= col.name %>
+                            </h1>
+                        </div>
+                    <%}%>
+
+                        <% col.recipes.forEach(function(product) { %>
+                            <div
+                                class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden border border-gray-200">
+                                <a href="/recipe/details/<%=product._id%>">
+                                    <% if (product.images && product.images.length> 0) { %>
+                                        <img src="data:image/jpeg;base64,<%= product.images[0].toString('base64') %>"
+                                            class="w-full h-48 sm:h-56 md:h-60 object-cover" alt="<%=product.title%>" />
+                                        <% } else { %>
+                                            <div
+                                                class="w-full h-48 flex items-center justify-center bg-gray-100 text-gray-500 text-sm">
+                                                No image available
+                                            </div>
+                                            <% } %>
+
+                                                <div class="p-4">
+                                                    <h2 class="font-semibold text-lg capitalize truncate">
+                                                        <%= product.title %>
+                                                    </h2>
+                                                    <p
+                                                        class="text-sm text-gray-600 capitalize bg-gray-100 px-3 py-1 rounded-full inline-block mt-2">
+                                                        <%= product.category %>
+                                                    </p>
+
+                                                    <div class="flex items-center justify-between mt-3">
+                                                        <span class="text-purple-600 font-medium text-md">
+                                                            ₹ <%= product.price %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                </a>
+
+                                <div class="w-full flex justify-center my-3">
+                                    <button onclick="removeFromCollection(this,'<%= product._id %>','<%=col._id%>')"
+                                        class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-5 rounded-full transition-all duration-200">
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% }) %>
+                </div>
 
 
 
@@ -234,6 +292,30 @@
         <button type="submit" onclick="closeForm()"
             class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1">
             Submit Recipe
+        </button>
+    </form>
+    <form id="createCollectionForm"
+        class="hidden absolute top-[15vw] left-[30vw] bg-white shadow-lg rounded-lg p-6 w-96 space-y-4 border"
+        action="/recipe/createCollections" method="POST">
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Create New Collection</h2>
+            <p class="cursor-pointer text-gray-600 hover:text-red-500 text-xl font-bold bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-200 shadow-sm"
+                onclick="closeCollectionForm()">✕</p>
+        </div>
+
+        <!-- Title -->
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Collection Name</label>
+            <input type="text" name="title" id="title" required
+                class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+        </div>
+
+
+
+        <!-- Submit Button -->
+        <button type="submit" onclick="closeForm()"
+            class="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1">
+            Submit
         </button>
     </form>
 
@@ -306,6 +388,13 @@
             form.classList.add('hidden');
         }
 
+        function closeCollectionForm() {
+            const form = document.getElementById('createCollectionForm');
+            form.classList.add('hidden');
+        }
+
+
+
         //remove from favorite
 
         async function removeFromFav(element, Id) {
@@ -318,11 +407,15 @@
             res = await res.json();
             window.location.href = '/profile'
 
+        }
+
+        async function createCollection() {
+            document.getElementById('createCollectionForm').classList.remove('hidden');
+
 
         }
 
-
-
+      
     </script>
 </body>
 
